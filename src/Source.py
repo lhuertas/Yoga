@@ -12,40 +12,33 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 # Input data files are available in the "../input/" directory.
 # For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
 import os
-print(os.listdir("../input"))
-
-# You should see `train.xlsx` and `test.xlsx` here
-train_df = pd.read_excel('../input/train.xlsx') # Load the `train` file
-test_df = pd.read_excel('../input/test.xlsx') # Load the `test` file
 
 ##Data Processing
 
 import re
 from stop_words import get_stop_words
 
-def stop_words():
-    """Retrieve the stop words for vectorization -Feel free to modify this function
-    """
-    return get_stop_words('es') + get_stop_words('ca') + get_stop_words('en')
 
 
-def filter_mentions(text):
-    """Utility function to remove the mentions of a tweet
-    """
-    return re.sub("@\S+", "", text)
+train_df = pd.read_excel('./Data/train.xlsx') # Load the `train` file
+test_df = pd.read_excel('./Data/test.xlsx') # Load the `test` file
+train_df['language'] = list(map(get_idioma, train_df['text']))
+train_df[train_df['idiom'] == 'et']
 
 
-def filter_hashtags(text):
-    """Utility function to remove the hashtags of a tweet
-    """
-    return re.sub("#\S+", "", text)
-                  
-                  # Preprocess data
-from sklearn.feature_extraction.text import CountVectorizer
-vectorizer = CountVectorizer(stop_words=stop_words())
-X = vectorizer.fit_transform(train_df['text']).toarray()
-y = train_df['party'].values
+tfidf_vectorizer = TfidfVectorizer(
+#tfidf_vectorizer = StemmedTfidfVectorizer(
+        sublinear_tf = True,
+        strip_accents='unicode',
+        min_df = 3,
+        norm='l2',
+        token_pattern='(?u)\w\w+',#r'[^0-9]\w{1,}',#r'#?[^0-9]\w\w+',
+        stop_words=stop_words(),
+        #ngram_range=(1,2),
+        #max_features=4000
+        )
 
+X.columns
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.model_selection import train_test_split
 
