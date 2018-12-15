@@ -1,3 +1,6 @@
+from langdetect import detect
+
+
 def stop_words():
     """Retrieve the stop words for vectorization -Feel free to modify this function
     """
