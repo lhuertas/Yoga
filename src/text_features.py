@@ -48,6 +48,7 @@ tfidf_vectorizer = TfidfVectorizer(
 X = tfidf_vectorizer.fit_transform(train_df['text']).toarray() #features
 y = train_df['party'].values
 
+
 tfidf_vectorizer.get_feature_names()
 
 
