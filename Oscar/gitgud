@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Dec  9 20:05:14 2018
+
+@author: Òscar
+"""
+
+# Import essentials
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+
+# Input data files are available in the "../input/" directory.
+# For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
+import os
+from scipy import stats
+
+
+train_df = pd.read_excel('C:/Users/Òscar/Downloads/train.xlsx') # Load the `train` file
+train_df.sample(frac=0.1)[:10] # Show a sample of the dataset
+
+
+train_df["textl"] = train_df["text"].apply(len)
+
+text_mean = train_df[["username","textl"]].groupby("username").mean()
+text_std = train_df[["username","textl"]].groupby("username").std()
+
+text_stats = pd.DataFrame(text_mean)
+text_stats= text_stats.assign(std=text_std)
+
+print(text_stats)
