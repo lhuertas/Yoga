@@ -35,11 +35,15 @@ def find_nearest(array, value):
 nearests=find_nearest(cumsumv,sumv)
 
 itemindexs = np.where(cumsumv==nearests)
-
+print(itemindexs)
 
 ## n_elements = valueof itemindexs
 
-svd = TruncatedSVD(n_components=2)
+svd = TruncatedSVD(n_components=3
+                  )
 svd.fit(A)
 result = svd.transform(A)
+np.asarray(result)
+
+
 print(result)
