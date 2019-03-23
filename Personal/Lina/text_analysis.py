@@ -106,7 +106,6 @@ clf.fit(X_train, y_train)
 prediction = clf.predict(X_test)
 print(np.mean([prediction == y_test]))
 
-
 #cross validation
 from sklearn.model_selection import KFold
 from sklearn import metrics
@@ -129,22 +128,9 @@ for train_index, test_index in kf.split(allFeatures):
     clf.fit(X_train, y_train)
     prediction = clf.predict(X_test)
     yhat[test_index] = clf.predict(X_test)
-    acc[i] = metrics.accuracy_score(yhat[test_index], y_test)
+    acc[i] = metrics.accuracy_score(yhat[test_index], y_test)   
     #print(acc[i])
     i=i+1
 print ('Mean accuracy: '+ str(np.mean(acc)))
 #Mean accuracy: 0.76
 
-
-# 3 Create a the results file
-output = pd.DataFrame({'Party': prediction})
-output.index.name = 'Id'
-output.to_csv('/Users/lina/DataScience/Project/Yoga/Personal/Lina/sample_submission_230219.csv')
-
-# TIP - Copy and paste this function to generate the output file in your code
-def save_submission(prediction):
-    import datetime
-    t = datetime.datetime.now().strftime("%Y%m%d-%H:%M:%S")
-    output = pd.DataFrame({'Party': prediction})
-    output.index.name = 'Id'
-    output.to_csv(f'sample_submission{t}.csv')
