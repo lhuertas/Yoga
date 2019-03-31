@@ -11,10 +11,9 @@ import matplotlib.pyplot as plt
 # Input data files are available in the "../input/" directory.
 # For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
 import os
-train_df = pd.read_excel('/Users/lina/DataScience/Project/Yoga/Data/train.xlsx') # Load the `train` file
-test_df = pd.read_excel('/Users/lina/DataScience/Project/Yoga/Data/test.xlsx') # Load the `test` file
-train_df_tr = pd.read_csv('/Users/lina/DataScience/Project/Yoga/Personal/Oliver/train_df_tr2.csv', delimiter=';') # Load the traductions file
-test_df_tr = pd.read_csv('/Users/lina/DataScience/Project/Yoga/Personal/Oliver/test_df_tr2.csv', delimiter=';') # Load the traductions file
+
+train_df_tr = pd.read_csv('C:\Workspace\Yoga/train_df_tr2.csv', delimiter=';') # Load the traductions file
+test_df_tr = pd.read_csv('C:\Workspace\Yoga/test_df_tr2.csv', delimiter=';') # Load the traductions file
 
 #train_df.groupby('party')['retweet_count'].sum().plot(kind='bar')
 #plt.show()

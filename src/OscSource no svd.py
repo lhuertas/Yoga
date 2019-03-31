@@ -9,21 +9,25 @@ Created on Tue Jan 29 23:51:16 2019
 
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import re # Stopwords
+from stop_words import get_stop_words # Stopwords
+
 from sklearn.feature_extraction.text import TfidfVectorizer
+
+from sklearn.preprocessing import LabelBinarizer #getdummies for language
+
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 
 
 # Import data
 
-train_df = pd.read_csv('C:/Workspace/Yoga/train_df_tr2.csv', sep=';') # Load the `train` file
-
-
-test_df = pd.read_csv('C:/Workspace/Yoga/train_df_tr2.csv', sep = ";") # Load the `test` file
+train_df = pd.read_csv('C:/Workspace/Yoga/Personal/Oliver/train_df_tr2.csv', sep=';') # Load the `train` file
+test_df = pd.read_csv('C:/Workspace/Yoga/Personal/Oliver/test_df_tr2.csv', sep = ";") # Load the `test` file
 
 
 #Stopwords
-
-import re
-from stop_words import get_stop_words
 
 def stop_words():
     """Retrieve the stop words for vectorization -Feel free to modify this function
@@ -46,48 +50,65 @@ def filter_hashtags(text):
 # Preprocess data. TF-IDF
 
 vectorizer = TfidfVectorizer(min_df=0,stop_words=stop_words())
-X = vectorizer.fit_transform(train_df['traducciones']).toarray()
+X_t = vectorizer.fit_transform(train_df['traducciones']).toarray()
+X_test_s = vectorizer.transform(test_df['traducciones']).toarray()
 
-#Feature engineering
+
+#Feature engineering. Get dummies for language tweet count and tweet favourite count
 
 y = train_df['party'].values
 
-language_dummy = pd.get_dummies(train_df['language'])
+get_dummies = LabelBinarizer()
 
+X_dummies = get_dummies.fit_transform(train_df['language'])
 train_df = train_df.values
-X = np.column_stack((X,train_df[:,6:8],language_dummy))
+X = np.column_stack((X_t,train_df[:,6:8],X_dummies)) #TF+IDF + counts and favourites + dummies language
 
 
-# Import model
-from sklearn.naive_bayes import BernoulliNB
-from sklearn.model_selection import train_test_split
+Test_dummies = get_dummies.transform(test_df['language']) 
+test_df = test_df.values
+X_test_sub = np.column_stack((X_test_s,test_df[:,3:5],Test_dummies)) #TF+IDF + counts and favourites + dummies language
 
-# Split train and test
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10)
+
+# Split train and test. For training and validation, not to submit!!!
+
+y_fact = pd.factorize(y) #Random forest doesn't understand string as y labels, we have to convert to float
+y_f = y_fact[0]
+definitions = y_fact[1]
+X_train, X_test, y_train, y_test = train_test_split(X, y_f, test_size=0.25)
 
 
 # Model
-clf = BernoulliNB()
-clf.fit(X_train, y_train)
-prediction = clf.predict(X_test)
+
+#clf = BernoulliNB()
+#clf.fit(X_train, y_train)
+
+
+rf = RandomForestClassifier(n_estimators = 100, criterion = 'entropy', random_state = 42)
+rf.fit(X_train, y_train)
 
 
 # K-Fold Cross-Validation
 from sklearn.model_selection import cross_val_score
-scores = cross_val_score(clf, X, y, cv=10)
+scores = cross_val_score(rf, X, y_f, cv=4)
 print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 
 
-# Result creation
-#output = pd.DataFrame({'Party': prediction})
-#output.index.name = 'Id'
-#output.to_csv('sample_submission.csv')
+#Prediction of test data. Remember to use the test to submit, not the test split to check accuracy !!!
+
+prediction = rf.predict(X_test_sub)
+reversefactor = dict(zip(range(6),definitions)) # See line 75, we are reversing the process labels to parties...
+y_test = np.vectorize(reversefactor.get)(y_test) # In order to submit it to Kaggle
+prediction = np.vectorize(reversefactor.get)(prediction)
+
 
 
 # TIP - Copy and paste this function to generate the output file in your code
-#def save_submission(prediction):
-#    import datetime
-#    t = datetime.datetime.now().strftime("%Y%m%d-%H:%M:%S")
-#    output = pd.DataFrame({'Party': prediction})
-#    output.index.name = 'Id'
-#    output.to_csv(f'sample_submission{t}.csv')
+def save_submission(prediction):
+    import datetime
+    t = datetime.datetime.now().strftime("%Y%m%d")
+    output = pd.DataFrame({'Party': prediction})
+    output.index.name = 'Id'
+    output.to_csv(f'C:/Workspace/Yoga/Code/sample_submission_{t}.csv')
+    
+save_submission(prediction)    
