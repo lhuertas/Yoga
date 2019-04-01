@@ -56,7 +56,7 @@ X_test_s = vectorizer.transform(test_df['traducciones']).toarray()
 
 #Feature engineering. Get dummies for language tweet count and tweet favourite count
 
-y = train_df['party'].values
+y = train_df['username'].values
 
 get_dummies = LabelBinarizer()
 
@@ -96,10 +96,10 @@ print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 
 #Prediction of test data. Remember to use the test to submit, not the test split to check accuracy !!!
 
-prediction = rf.predict(X_test_sub)
-reversefactor = dict(zip(range(6),definitions)) # See line 75, we are reversing the process labels to parties...
-y_test = np.vectorize(reversefactor.get)(y_test) # In order to submit it to Kaggle
-prediction = np.vectorize(reversefactor.get)(prediction)
+#prediction = rf.predict(X_test_sub)
+#reversefactor = dict(zip(range(6),definitions)) # See line 75, we are reversing the process labels to parties...
+#y_test = np.vectorize(reversefactor.get)(y_test) # In order to submit it to Kaggle
+#prediction = np.vectorize(reversefactor.get)(prediction)
 
 
 
@@ -111,4 +111,4 @@ def save_submission(prediction):
     output.index.name = 'Id'
     output.to_csv(f'C:/Workspace/Yoga/Code/sample_submission_{t}.csv')
     
-save_submission(prediction)    
+#save_submission(prediction)
