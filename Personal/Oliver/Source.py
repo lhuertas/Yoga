@@ -57,8 +57,8 @@ def text_filtered(string):
     return my_string
 
 
-train_df = pd.read_excel('/Users/oliver/YOGA/datos/train.xlsx') # Load the `train` file
-test_df = pd.read_excel('/Users/oliver/YOGA/datos/test.xlsx') # Load the `test` file
+train_df = pd.read_excel('/Users/oliver/YOGA/datos/train-20190402-08_55_19.xlsx') # Load the `train` file
+test_df = pd.read_excel('/Users/oliver/YOGA/datos/test-20190402-08_55_19-public.xlsx') # Load the `test` file
 train_df['language'] = list(map(get_language, train_df['text']))
 train_df['text_modif'] = list(map(text_filtered, train_df['text'])) # to see text post filtering
 num_lang = train_df['language'].value_counts()
