@@ -98,7 +98,7 @@ if __name__ == '__main__':
         source_language = train_df.loc[idx, 'language_id']
         text_to_translate = train_df.loc[idx, 'text_modif']
         if source_language == 'es':
-            translations.append(text_to_translate)
+            translations.append(text_to_translate) #
         else:
             translation = translate_string_google_cloud(text_to_translate,
                                                         source_language,
