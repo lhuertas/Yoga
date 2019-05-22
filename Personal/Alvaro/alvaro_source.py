@@ -89,7 +89,6 @@ if __name__ == '__main__':
 
     train_df['text_modif'] = list(map(text_filtered, train_df['text']))  # to see text post filtering
     num_lang = train_df['language'].value_counts()
-    plt.plot(num_lang)
 
     # Translation
     ini = time.time()
