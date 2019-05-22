@@ -41,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Personal/Oliver/my_Source.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="24" selection-end-line="180" selection-end-column="46" />
+            <state relative-caret-position="510">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="e#105#140#0" expanded="true" />
               </folding>
@@ -53,14 +53,34 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Personal/Alvaro/alvaro_source.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="847">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="313">
+              <caret line="117" column="2" selection-start-line="117" selection-start-column="2" selection-end-line="117" selection-end-column="2" />
               <folding>
-                <element signature="e#20#38#0" expanded="true" />
-                <element signature="e#313#478#0" />
-                <element signature="e#512#609#0" />
-                <element signature="e#643#740#0" />
+                <element signature="e#27#45#0" expanded="true" />
+                <element signature="e#269#434#0" />
+                <element signature="e#468#565#0" />
+                <element signature="e#599#696#0" />
+                <element signature="e#968#1094#0" />
+                <element signature="e#1222#1422#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="18" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Python/Lib/site-packages/textblob/blob.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
             </state>
           </provider>
         </entry>
@@ -73,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Data/train_traducido.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+            <state relative-caret-position="5338">
+              <caret line="314" selection-start-line="314" selection-end-line="314" />
             </state>
           </provider>
         </entry>
@@ -91,6 +111,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>get_fea</find>
+      <find>end</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,15 +132,16 @@
         <option value="$PROJECT_DIR$/Personal/Alvaro/baseline_v1.py" />
         <option value="$PROJECT_DIR$/Personal/Alvaro/baseline.py" />
         <option value="$PROJECT_DIR$/src/OscSource no svd.py" />
+        <option value="$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py" />
         <option value="$PROJECT_DIR$/Personal/Alvaro/alvaro_source.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2264" />
-    <option name="y" value="340" />
-    <option name="width" value="1291" />
-    <option name="height" value="731" />
+    <option name="x" value="4160" />
+    <option name="y" value="160" />
+    <option name="width" value="1296" />
+    <option name="height" value="736" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -167,7 +189,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Personal/Alvaro/alvaro_source.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -189,7 +211,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.alvaro_source">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -215,6 +237,9 @@
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="GOOGLE_APPLICATION_CREDENTIALS" value="C:\workspace/varios/University Project Translator-6bf328e07357.json" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -229,6 +254,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="google_cloud_translator" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
+      <module name="Yoga" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.alvaro_source" />
+      <item itemvalue="Python.google_cloud_translator" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -244,10 +291,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="3832" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19546892" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29452056" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -260,7 +307,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.33586133" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.45070422" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -350,33 +397,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Personal/Oliver/my_Source.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="24" selection-end-line="180" selection-end-column="46" />
+        <state relative-caret-position="510">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="e#105#140#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/test_traducido.csv">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/../cmt_previsiones/src/mods/mod_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/train_traducido.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state relative-caret-position="5338">
+          <caret line="314" selection-start-line="314" selection-end-line="314" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/test_traducido.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python/Lib/site-packages/textblob/blob.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="18" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Personal/Alvaro/alvaro_source.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="847">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="313">
+          <caret line="117" column="2" selection-start-line="117" selection-start-column="2" selection-end-line="117" selection-end-column="2" />
           <folding>
-            <element signature="e#20#38#0" expanded="true" />
-            <element signature="e#313#478#0" />
-            <element signature="e#512#609#0" />
-            <element signature="e#643#740#0" />
+            <element signature="e#27#45#0" expanded="true" />
+            <element signature="e#269#434#0" />
+            <element signature="e#468#565#0" />
+            <element signature="e#599#696#0" />
+            <element signature="e#968#1094#0" />
+            <element signature="e#1222#1422#0" />
           </folding>
         </state>
       </provider>
