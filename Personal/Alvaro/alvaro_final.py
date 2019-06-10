@@ -77,8 +77,6 @@ if __name__ == '__main__':
                                     right_on='id',
                                     how='left')['score'])
 
-    #Tweets 6945 y 674 are not in train_df_tr after processing but they have sentiment analysis. WTF?
-
     test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')  # Load the traductions file
     test_df_counts = get_features_of_interest_counts(test_df_tr)
     test_df_languages = get_language_df(test_df_tr)
