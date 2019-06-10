@@ -235,7 +235,7 @@ knn = KNeighborsClassifier(n_neighbors=28, weights='uniform')
 knn.fit(X_train,y_train)
 prediction = knn.predict(X_test)
 print("Prediction: {}".format(np.mean([prediction == y_test])))
-#Prediction: 0.307243558580457
+#Prediction: 0.16518847006651885
 #------------------------------------------------------------------------
 
 
@@ -257,19 +257,19 @@ CV_rfc.fit(X_train,y_train)
 
 CV_rfc.best_params_
 
-#{'criterion': 'entropy',
+#{'criterion': 'gini',
 # 'max_depth': 8,
-# 'max_features': 'log2',
+# 'max_features': 'auto',
 # 'n_estimators': 500}
 
-rfc1=RandomForestClassifier(random_state=42, max_features='log2', n_estimators= 500, max_depth=8, criterion='entropy')
+rfc1=RandomForestClassifier(random_state=42, max_features='auto', n_estimators= 500, max_depth=8, criterion='gini')
 
 rfc1.fit(X_train, y_train)
 
 pred=rfc1.predict(X_test)
 
 print("Prediction: {}".format(np.mean([pred == y_test])))
-#Prediction: 0.40836169178415166
+#Prediction: 0.2860310421286031
 #------------------------------------------------------------------------
 
 
