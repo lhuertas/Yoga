@@ -86,7 +86,6 @@ ROOT_PATH = "C:/workspace/Repositorios/Politicians/"
 if __name__ == '__main__':
     translate_client = translate.Client()
     train_df, test_df = read_train_test_originals()
-    translation = hello_world_translation(translate_client)
     train_df['text_clean'] = list(map(clean_text, train_df['text']))
 
     # Translation
@@ -103,6 +102,7 @@ if __name__ == '__main__':
             'language' : translation['detectedSourceLanguage'],
             'text' : translation['translatedText']}
         translations_dicts.append(iter_dict)
-    train_df.to_csv(os.path.join(ROOT_PATH, "Data", "english_translation.csv"), sep=';', index=False)
 
     results_df = pd.DataFrame.from_dict(translations_dicts)
+    results_df.to_csv(os.path.join(ROOT_PATH, "Data", "train_english_translation.csv"), sep=';', index=False)
+
