@@ -53,42 +53,42 @@ df_counts = pd.DataFrame({ 'username' : train_df_tr['username'].values,
 
 #----------- 3. Preprocess data
 
-### with imbalanced data ###
-y = train_df_tr['username'].values
-y1, y2 = np.unique(y, return_inverse=True)
-
-
-#### without imbalanced data ###
-## target
+#### with imbalanced data ###
 #y = train_df_tr['username'].values
 #y1, y2 = np.unique(y, return_inverse=True)
-#values, tweet_counts = np.unique(y, return_counts=True)
-#politicians = pd.DataFrame({'values': values,
-#                            'tweet_counts': tweet_counts})
-#politicians['tweet_counts'].plot.hist() # Disbalanced
-#
-#max_tweet = np.max(politicians['tweet_counts'])
-#
-## todos los políticos con mismo número de tweets
-#pol_df_total = train_df_tr.iloc[0:0]
-#for pol in politicians['values']:
-#    pol_df = train_df_tr[train_df_tr.username == pol]
-#    if pol == 'olallamarga':
-#        pol_df = pol_df.loc[pol_df.index.repeat(20)]
-#    pol_df = pd.concat([pol_df, pol_df[0:max_tweet-len(pol_df)]], axis=0)
-#    pol_df_total = pd.concat([pol_df_total, pol_df], axis=0)
-#
-#pol_df_total.reset_index(inplace=True, drop=True)
-#train_df_tr = pol_df_total.copy()
-#del(pol_df_total)
-#
-## counts per politician
-#df_counts = pd.DataFrame({ 'username' : train_df_tr['username'].values,
-#                           'words' : train_df_tr['text'].apply(lambda x: funcs.number_words(x)),
-#                           'emoticons' : train_df_tr['text'].apply(lambda x: funcs.number_emoticons(x)),
-#                           'hashtags' : train_df_tr['text'].apply(lambda x: funcs.number_hashtags(x)),
-#                           'mentions' : train_df_tr['text'].apply(lambda x: funcs.number_mentions(x)),
-#                         })
+
+
+### without imbalanced data ###
+# target
+y = train_df_tr['username'].values
+y1, y2 = np.unique(y, return_inverse=True)
+values, tweet_counts = np.unique(y, return_counts=True)
+politicians = pd.DataFrame({'values': values,
+                            'tweet_counts': tweet_counts})
+politicians['tweet_counts'].plot.hist() # Disbalanced
+
+max_tweet = np.max(politicians['tweet_counts'])
+
+# todos los políticos con mismo número de tweets
+pol_df_total = train_df_tr.iloc[0:0]
+for pol in politicians['values']:
+    pol_df = train_df_tr[train_df_tr.username == pol]
+    if pol == 'olallamarga':
+        pol_df = pol_df.loc[pol_df.index.repeat(20)]
+    pol_df = pd.concat([pol_df, pol_df[0:max_tweet-len(pol_df)]], axis=0)
+    pol_df_total = pd.concat([pol_df_total, pol_df], axis=0)
+
+pol_df_total.reset_index(inplace=True, drop=True)
+train_df_tr = pol_df_total.copy()
+del(pol_df_total)
+
+# counts per politician
+df_counts = pd.DataFrame({ 'username' : train_df_tr['username'].values,
+                           'words' : train_df_tr['text'].apply(lambda x: funcs.number_words(x)),
+                           'emoticons' : train_df_tr['text'].apply(lambda x: funcs.number_emoticons(x)),
+                           'hashtags' : train_df_tr['text'].apply(lambda x: funcs.number_hashtags(x)),
+                           'mentions' : train_df_tr['text'].apply(lambda x: funcs.number_mentions(x)),
+                         })
 
 # -----------------------------------------------
 
