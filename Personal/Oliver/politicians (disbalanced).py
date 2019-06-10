@@ -200,38 +200,38 @@ grid.fit(X_train,y_train)
 pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
 
 #    mean_test_score  std_test_score               params
-#0   0.2819           0.0226          {'n_neighbors': 1} 
-#1   0.2036           0.0163          {'n_neighbors': 2} 
-#2   0.1780           0.0148          {'n_neighbors': 3} 
-#3   0.1707           0.0116          {'n_neighbors': 4} 
-#4   0.1680           0.0110          {'n_neighbors': 5} 
-#5   0.1697           0.0168          {'n_neighbors': 6} 
-#6   0.1709           0.0129          {'n_neighbors': 7} 
-#7   0.1714           0.0139          {'n_neighbors': 8} 
-#8   0.1748           0.0141          {'n_neighbors': 9} 
-#9   0.1783           0.0136          {'n_neighbors': 10}
-#10  0.1775           0.0135          {'n_neighbors': 11}
-#11  0.1804           0.0163          {'n_neighbors': 12}
-#12  0.1817           0.0169          {'n_neighbors': 13}
-#13  0.1860           0.0169          {'n_neighbors': 14}
-#14  0.1889           0.0183          {'n_neighbors': 15}
-#15  0.1899           0.0173          {'n_neighbors': 16}
-#16  0.1908           0.0171          {'n_neighbors': 17}
-#17  0.1913           0.0167          {'n_neighbors': 18}
-#18  0.1903           0.0157          {'n_neighbors': 19}
-#19  0.1897           0.0164          {'n_neighbors': 20}
-#20  0.1894           0.0136          {'n_neighbors': 21}
-#21  0.1923           0.0142          {'n_neighbors': 22}
-#22  0.1950           0.0112          {'n_neighbors': 23}
-#23  0.1968           0.0092          {'n_neighbors': 24}
-#24  0.1941           0.0113          {'n_neighbors': 25}
-#25  0.1944           0.0102          {'n_neighbors': 26}
-#26  0.1950           0.0102          {'n_neighbors': 27}
-#27  0.1903           0.0144          {'n_neighbors': 28}
-#28  0.1897           0.0146          {'n_neighbors': 29}
-#29  0.1895           0.0131          {'n_neighbors': 30}
+#0   0.1436           0.0134          {'n_neighbors': 1} 
+#1   0.1175           0.0101          {'n_neighbors': 2} 
+#2   0.1171           0.0130          {'n_neighbors': 3} 
+#3   0.1253           0.0109          {'n_neighbors': 4} 
+#4   0.1319           0.0093          {'n_neighbors': 5} 
+#5   0.1362           0.0057          {'n_neighbors': 6} 
+#6   0.1369           0.0077          {'n_neighbors': 7} 
+#7   0.1412           0.0086          {'n_neighbors': 8} 
+#8   0.1439           0.0084          {'n_neighbors': 9} 
+#9   0.1486           0.0088          {'n_neighbors': 10}
+#10  0.1476           0.0120          {'n_neighbors': 11}
+#11  0.1443           0.0120          {'n_neighbors': 12}
+#12  0.1486           0.0155          {'n_neighbors': 13}
+#13  0.1504           0.0161          {'n_neighbors': 14}
+#14  0.1545           0.0156          {'n_neighbors': 15}
+#15  0.1569           0.0169          {'n_neighbors': 16}
+#16  0.1591           0.0147          {'n_neighbors': 17}
+#17  0.1609           0.0121          {'n_neighbors': 18}
+#18  0.1622           0.0126          {'n_neighbors': 19}
+#19  0.1648           0.0143          {'n_neighbors': 20}
+#20  0.1667           0.0155          {'n_neighbors': 21}
+#21  0.1667           0.0162          {'n_neighbors': 22}
+#22  0.1670           0.0165          {'n_neighbors': 23}
+#23  0.1674           0.0180          {'n_neighbors': 24}
+#24  0.1672           0.0151          {'n_neighbors': 25}
+#25  0.1669           0.0137          {'n_neighbors': 26}
+#26  0.1665           0.0147          {'n_neighbors': 27}
+#27  0.1696           0.0137          {'n_neighbors': 28}
+#28  0.1676           0.0146          {'n_neighbors': 29}
+#29  0.1683           0.0157          {'n_neighbors': 30}
 
-knn = KNeighborsClassifier(n_neighbors=1, weights='uniform')
+knn = KNeighborsClassifier(n_neighbors=28, weights='uniform')
 knn.fit(X_train,y_train)
 prediction = knn.predict(X_test)
 print("Prediction: {}".format(np.mean([prediction == y_test])))
