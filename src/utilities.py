@@ -132,8 +132,10 @@ def model_sel(x_train, y_train, x_test, y_test):
     print(" ")
 
     MaxVoting_esemble = VotingClassifier(
-        estimators=[('lr', clf1), ('bb', clf2), ('svc', clf3), ('rf', clf4), ('xg', clf5), ('knn', clf6), ('grb', clf7),
-                    ('ab', clf8), ('nn', clf9)], voting='hard')
+        estimators=[('lr', clf1), ('bb', clf2), ('svc', clf3),
+                    ('rf', clf4), ('xg', clf5), ('knn', clf6),
+                    ('grb', clf7),('ab', clf8), ('nn', clf9)],
+        voting='hard')
     MaxVoting_esemble.fit(x_train, y_train)
     score = MaxVoting_esemble.score(x_test, y_test)
     print("MaxVoting: {}".format(score))

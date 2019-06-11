@@ -1,12 +1,12 @@
 import sys
 import os
 import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split, ShuffleSplit, GridSearchCV
-import functions as funcs
+from sklearn.model_selection import train_test_split
+import utilities as funcs
 from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.preprocessing import LabelEncoder
 from keras.utils.np_utils import to_categorical
+import pandas as pd
 
 def count_features_and_scale(df, df_counts):
     scaler = StandardScaler()
@@ -53,10 +53,10 @@ def add_text_clean_col_to_df(df):
 
 
 if __name__ == '__main__':
-    
+
     # SET PATHS ##
-    ROOT_PATH = "/Users/lina/DataScience/Project/Yoga/"
-    PERSONAL_PATH = "Personal/Lina"
+    ROOT_PATH = "C:/workspace/Repositorios/Politicians/"
+    PERSONAL_PATH = "Personal/Alvaro"
 
     os.chdir(os.path.join(ROOT_PATH, PERSONAL_PATH))
     sys.path.append(os.path.join(ROOT_PATH, PERSONAL_PATH))
