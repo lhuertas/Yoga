@@ -1,6 +1,6 @@
 import re
 from stop_words import get_stop_words
-
+import numpy as np
 
 def stop_words():
     """Retrieve the stop words for vectorization -Feel free to modify this function
@@ -59,17 +59,109 @@ import unidecode
 def clean_text(text):
     #lowercase:
     text_clean = text.lower()
-    #remove accents:
-    text_clean = unidecode.unidecode(text_clean)
     #remove_hashtags:
     text_clean = re.sub('@','',text_clean)
     #remove_mentions:
     text_clean = re.sub('#','',text_clean)
     #transf. emoticons_to_word:
     text_clean = emoji.demojize(text_clean).replace(':',' ').replace('_','')
-    #remove puntuation, numbers:
-    text_clean = re.sub('[^A-Za-z]+',' ',text_clean)
+    #remove accents:
+    text_clean = unidecode.unidecode(text_clean)
+    #remove numbers:
+    text_clean = re.sub('[^A-za-z]+',' ',text_clean)
+    #
+    text_clean = re.sub('quot',' ',text_clean)
     return text_clean
+
+from sklearn.naive_bayes import BernoulliNB
+from sklearn import neighbors
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
+import xgboost as xgb
+from sklearn.ensemble import VotingClassifier
+from vecstack import stacking
+from sklearn.metrics import accuracy_score
+from keras.models import Sequential
+from keras import layers, regularizers
+from keras.layers import Dropout,Dense,Activation
+from keras.utils import np_utils
+from keras.wrappers.scikit_learn import KerasClassifier
+
+def Sequential_model(input_dim, n_classes):
+  def sm():
+    model = Sequential()
+    model.add(Dense(64, activation='relu', input_dim=input_dim, kernel_regularizer=regularizers.l2(0.0001)))
+    model.add(Dropout(0.2))
+    model.add(layers.Dense(20, activation='relu', kernel_regularizer=regularizers.l2(0.0001)))
+    model.add(Dropout(0.2))
+    model.add(Dense(n_classes, activation='sigmoid', kernel_regularizer=regularizers.l2(0.0001)))
+    model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+    return model
+  return sm
+
+def model_sel(x_train, y_train, x_test, y_test):
+
+    clf1 = LogisticRegression(random_state=0)
+    clf2 = BernoulliNB()
+    clf3 = SVC(C= 1, kernel= 'linear')
+    clf4 = RandomForestClassifier(n_estimators=800, min_samples_split=5, min_samples_leaf=1, max_features='sqrt',max_depth=100, bootstrap=False)
+    clf5 = xgb.XGBClassifier(random_state=0, n_jobs=-1, learning_rate=0.3, 
+                      n_estimators=100, max_depth=4)
+    clf6 = neighbors.KNeighborsClassifier(n_neighbors=9,p=1)
+    clf7 = GradientBoostingClassifier(max_depth=5, min_samples_split=4, min_samples_leaf=1, subsample=1,max_features='sqrt', random_state=10, 
+            learning_rate = 0.15, n_estimators = 300)
+    clf8 = AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None,
+          learning_rate=1, n_estimators=200, random_state=1)
+
+    input_dim = x_train.shape[1]
+    n_classes = len(np.unique(y_train))
+    clf9 = KerasClassifier(Sequential_model(input_dim, n_classes),epochs=8)
+
+    clf = [clf1, clf2, clf3, clf4,clf5,clf6,clf7,clf8,clf9]
+
+    for model in clf:
+        print(f"Classifier: {model}")
+        model.fit(x_train, y_train)
+        score = model.score(x_test, y_test)
+        print("score: {}".format(score))
+        print(" ")
+
+
+    print("Ensembles.................................")
+    print(" ")
+
+    MaxVoting_esemble = VotingClassifier(estimators=[('lr', clf1), ('bb', clf2), ('svc', clf3), ('rf', clf4), ('xg', clf5), ('knn', clf6), ('grb', clf7), ('ab', clf8), ('nn',clf9)], voting='hard')
+    MaxVoting_esemble.fit(x_train,y_train)
+    score = MaxVoting_esemble.score(x_test,y_test)
+    print("MaxVoting: {}".format(score))
+    print(" ")
+    
+    #staking
+    S_train, S_test = stacking(clf,                   
+                           x_train, y_train, x_test,   
+                           regression=False,      
+                           mode='oof_pred_bag',        
+                           needs_proba=False,         
+                           save_dir=None,             
+                           metric=accuracy_score,     
+                           n_folds=4,                  
+                           stratified=True,            
+                           shuffle=True,             
+                           random_state=0,           
+                           verbose=2)
+
+    stacking_ensemble = SVC(C= 1, kernel= 'linear')
+    stacking_ensemble = stacking_ensemble.fit(S_train, y_train)
+    stacking_score = stacking_ensemble.score(S_test, y_test)
+    print("Stacking: {}".format(stacking_score))
+
+    return clf, MaxVoting_esemble, stacking_ensemble
+
 
 import pandas as pd
 def save_submission(prediction, fileName = 'sample_submission'):
