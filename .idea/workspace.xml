@@ -2,20 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adf054e2-bb72-49d2-9e98-1f1f12ef78d3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Personal/Lina/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Personal/Lina/files/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/original/test_sentiment_azure.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/original/test_sentiment_google.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/original/train_sentiment_azure.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/original/train_sentiment_google.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/alvaro_final.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Alvaro/alvaro_final.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/alvaro_source.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Alvaro/BACKUP/alvaro_source.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/amazon_sentiment_feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Alvaro/amazon_sentiment_feature.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Alvaro/BACKUP/baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/march.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/original.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Alvaro/BACKUP/original.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/pandas_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Alvaro/BACKUP/pandas_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal/Alvaro/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Personal/Lina/parties_final.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Lina/parties_final.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submissio20190131-18" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submissio20190131-18" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-121248.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-121248.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-121253.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-121253.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-121555.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-121555.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-121601.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-121601.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-121604.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-121604.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-121607.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-121607.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-123353.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-123353.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-124749.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-124749.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_submission20190324-124753.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission20190324-124753.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OscSource no svd.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Oscar/OscSource no svd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Source.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/parties_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/baseline_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample_submission.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/submissions/sample_submission.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/text_features.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,12 +34,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/alvaro_final.py">
+        <entry file="file://$PROJECT_DIR$/Personal/Lina/parties_final.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-98">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
+            <state relative-caret-position="1388">
+              <caret line="124" column="78" selection-end-line="133" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -38,84 +60,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/BACKUP/alvaro_source.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="75" selection-start-line="75" selection-end-line="77" selection-end-column="50" />
-              <folding>
-                <element signature="e#27#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/__init__.py">
+        <entry file="file://$PROJECT_DIR$/src/__init__.py">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="230" lean-forward="true" selection-start-line="228" selection-start-column="6" selection-end-line="230" />
+            <state relative-caret-position="2635">
+              <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
               <folding>
-                <element signature="e#73#135#0" expanded="true" />
-                <element signature="e#260#614#0" />
-                <element signature="e#717#1364#0" />
-                <element signature="e#1931#2255#0" />
-                <element signature="e#1701#1923#0" />
+                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#1428#1927#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/amazon_sentiment_feature.py">
+        <entry file="file://$PROJECT_DIR$/Personal/Lina/files/functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="19" />
-              <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../Software/Anaconda3/envs/pythonist/Lib/site-packages/google/cloud/language_v1/gapic/language_service_client.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="168" column="8" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="108" selection-start-line="108" selection-end-line="108" />
-              <folding>
-                <element signature="e#27#45#0" expanded="true" />
-                <element signature="e#405#863#0" />
-                <element signature="e#642#709#0" />
-                <element signature="e#1272#1309#0" />
-                <element signature="e#1356#1773#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Personal/Alvaro/functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+            <state relative-caret-position="320">
+              <caret line="103" column="16" lean-forward="true" selection-end-line="174" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Data/submissions/sample_submission.csv">
+          <provider selected="true" editor-type-id="csv-text-editor" />
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
         </entry>
       </file>
@@ -171,13 +149,22 @@
         <option value="$PROJECT_DIR$/Personal/Alvaro/amazon_sentiment_feature.py" />
         <option value="$PROJECT_DIR$/Personal/Alvaro/alvaro_final.py" />
         <option value="$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py" />
+        <option value="$PROJECT_DIR$/Personal/Oliver/politicians.py" />
+        <option value="$PROJECT_DIR$/Personal/Lina/parties_final.py" />
+        <option value="$PROJECT_DIR$/Personal/Lina/files/__init__.py" />
+        <option value="$PROJECT_DIR$/Personal/Lina/__init__.py" />
+        <option value="$PROJECT_DIR$/src/Source.py" />
+        <option value="$PROJECT_DIR$/src/__init__.py" />
+        <option value="$PROJECT_DIR$/src/functions.py" />
+        <option value="$PROJECT_DIR$/src/parties_classification.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="509" />
-    <option name="width" value="1418" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="240" />
+    <option name="y" value="130" />
+    <option name="width" value="1440" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -206,20 +193,19 @@
               <item name="Politicians" type="b2602c69:ProjectViewProjectNode" />
               <item name="Politicians" type="462c0819:PsiDirectoryNode" />
               <item name="Personal" type="462c0819:PsiDirectoryNode" />
-              <item name="Alvaro" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Politicians" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Politicians" type="462c0819:PsiDirectoryNode" />
-              <item name="Personal" type="462c0819:PsiDirectoryNode" />
-              <item name="Alvaro" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
+              <item name="Lina" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Politicians" type="b2602c69:ProjectViewProjectNode" />
               <item name="Politicians" type="462c0819:PsiDirectoryNode" />
               <item name="Personal" type="462c0819:PsiDirectoryNode" />
               <item name="Lina" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Politicians" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Politicians" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -230,20 +216,22 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Personal/Alvaro/google_sentiment_analysis.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Personal/Lina/parties_final.py" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\Repositorios\Politicians\Data\submissions" />
+      <recent name="C:\workspace\Repositorios\Politicians\Personal\Oscar" />
+      <recent name="C:\workspace\Repositorios\Politicians\Personal\Alvaro\BACKUP" />
+      <recent name="C:\workspace\Repositorios\Politicians\Personal\Alvaro" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\workspace\Repositorios\Politicians\Personal\Alvaro" />
       <recent name="C:\workspace\Repositorios\Politicians\Personal\Lina" />
       <recent name="C:\Users\Alvaro\OneDrive\3- Vida academica\0_Universidad de Barcelona\Capstone Project\src" />
       <recent name="C:\Users\Alvaro\OneDrive\3- Vida academica\0_Universidad de Barcelona\Capstone Project\Personal\Alvaro" />
       <recent name="C:\Users\Òscar\.PyCharmCE2018.2\config\scratches" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\workspace\Repositorios\Politicians\Personal\Alvaro\BACKUP" />
-      <recent name="C:\workspace\Repositorios\Politicians\Personal\Alvaro" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -258,7 +246,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.azure_sentiment_feature">
+  <component name="RunManager" selected="Python.parties_final">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -285,6 +273,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="GOOGLE_APPLICATION_CREDENTIALS" value="C:\workspace/varios/University Project Translator-6bf328e07357.json" />
       </envs>
       <option name="SDK_HOME" value="" />
@@ -306,6 +295,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="GOOGLE_APPLICATION_CREDENTIALS" value="$PROJECT_DIR$/../../varios/University Project Translator-9085c68a350c.json" />
       </envs>
       <option name="SDK_HOME" value="" />
@@ -327,6 +317,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="GOOGLE_APPLICATION_CREDENTIALS" value="$PROJECT_DIR$/../../varios/University Project Translator-9085c68a350c.json" />
       </envs>
       <option name="SDK_HOME" value="" />
@@ -343,11 +334,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="parties_final" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
+      <module name="Yoga" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Personal/Lina" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Personal/Lina/parties_final.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="sentiment_feature" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="GOOGLE_APPLICATION_CREDENTIALS" value="$PROJECT_DIR$/../../varios/University Project Translator-9085c68a350c.json" />
       </envs>
       <option name="SDK_HOME" value="" />
@@ -366,9 +376,10 @@
     </configuration>
     <list>
       <item itemvalue="Python.amazon_sentiment_feature" />
-      <item itemvalue="Python.azure_sentiment_feature" />
       <item itemvalue="Python.google_cloud_translator" />
       <item itemvalue="Python.google_sentiment_analysis" />
+      <item itemvalue="Python.sentiment_feature" />
+      <item itemvalue="Python.parties_final" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -385,14 +396,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="509" y="0" width="1418" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17391305" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16438356" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3288889" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -401,7 +412,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
-      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.38512036" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.23293608" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -448,9 +459,6 @@
     <entry file="file://$PROJECT_DIR$/Personal/Alvaro/BACKUP/pandas_settings.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/baseline.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Personal/Alvaro/BACKUP/baseline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -477,7 +485,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/OscSource no svd.py">
+    <entry file="file://$PROJECT_DIR$/Personal/Oscar/OscSource no svd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="113" column="28" selection-end-line="113" selection-end-column="28" />
@@ -495,19 +503,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/train_traducido.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="5338">
           <caret line="314" selection-start-line="314" selection-end-line="314" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Lina/files/functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -524,22 +523,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_sentiment_analysis.py" />
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/march.py" />
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/test.txt" />
     <entry file="file://$PROJECT_DIR$/Personal/Alvaro/BACKUP/alvaro_source.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
+        <state relative-caret-position="1275">
           <caret line="75" selection-start-line="75" selection-end-line="77" selection-end-column="50" />
           <folding>
             <element signature="e#27#45#0" expanded="true" />
@@ -547,33 +536,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Software/Anaconda3/envs/pythonist/Lib/site-packages/google/cloud/language_v1/gapic/language_service_client.py">
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/alvaro_final.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="168" column="8" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_sentiment_analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="3" lean-forward="true" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
+        <state relative-caret-position="1224">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
           <folding>
-            <element signature="e#75#90#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py">
+    <entry file="file://$PROJECT_DIR$/Personal/Oliver/politicians (disbalanced).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        <state>
           <folding>
-            <element signature="e#27#45#0" expanded="true" />
-            <element signature="e#405#863#0" />
-            <element signature="e#642#709#0" />
-            <element signature="e#1272#1309#0" />
-            <element signature="e#1356#1773#0" />
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Oliver/politicians.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2890">
+          <caret line="170" column="56" selection-start-line="170" selection-start-column="56" selection-end-line="170" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
+          <folding>
+            <element signature="e#73#135#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -588,39 +588,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/march.py">
+    <entry file="file://$PROJECT_DIR$/../../Software/Anaconda3/envs/pythonist/Lib/site-packages/google/cloud/language_v1/gapic/language_service_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="2618">
+          <caret line="168" column="8" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#27#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/test.txt">
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/train_sentiment_features.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Lina/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/alvaro_final.py">
+    <entry file="file://$PROJECT_DIR$/Personal/Lina/files/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baseline.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/baseline_v1.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/text_features.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-98">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="-94" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/submissions/sample_submission.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Lina/parties_final.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1388">
+          <caret line="124" column="78" selection-end-line="133" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py">
+    <entry file="file://$PROJECT_DIR$/src/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Lina/files/functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="230" lean-forward="true" selection-start-line="228" selection-start-column="6" selection-end-line="230" />
+        <state relative-caret-position="320">
+          <caret line="103" column="16" lean-forward="true" selection-end-line="174" />
           <folding>
-            <element signature="e#73#135#0" expanded="true" />
-            <element signature="e#260#614#0" />
-            <element signature="e#717#1364#0" />
-            <element signature="e#1931#2255#0" />
-            <element signature="e#1701#1923#0" />
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2635">
+          <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#1428#1927#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

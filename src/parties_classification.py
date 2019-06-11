@@ -1,16 +1,11 @@
 import sys
 import os
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import matplotlib.pyplot as plt
-from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
+import numpy as np
+import pandas as pd
 from sklearn.model_selection import train_test_split, ShuffleSplit, GridSearchCV
-import files.functions as funcs
-import seaborn as sns
+import functions as funcs
 from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-import datetime as dt
 from keras.utils.np_utils import to_categorical
 
 def count_features_and_scale(df, df_counts):
@@ -58,6 +53,7 @@ def add_text_clean_col_to_df(df):
 
 
 if __name__ == '__main__':
+    
     # SET PATHS ##
     ROOT_PATH = "/Users/lina/DataScience/Project/Yoga/"
     PERSONAL_PATH = "Personal/Lina"

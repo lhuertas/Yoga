@@ -228,3 +228,6 @@ if __name__ == '__main__':
 
         final_df.to_csv(
             os.path.join(ROOT_PATH, "Data/train_sentiment_features.csv"), index=False, sep=';')
+
+        df = final_df[final_df['amazon_sentiment'] == 'POSITIVE']
+        c_df = df.groupby(['party']).agg({'amazon_sentiment':'count'})
