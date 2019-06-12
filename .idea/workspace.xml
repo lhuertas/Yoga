@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="adf054e2-bb72-49d2-9e98-1f1f12ef78d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/prueba_sentiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/prueba_sentiment.py" afterDir="false" />
-    </list>
+    <list default="true" id="adf054e2-bb72-49d2-9e98-1f1f12ef78d3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +27,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/prueba_sentiment.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="254">
-                  <caret line="138" selection-start-line="138" selection-end-line="146" selection-end-column="16" />
+                <state relative-caret-position="322">
+                  <caret line="142" column="29" lean-forward="true" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="29" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -673,8 +671,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/prueba_sentiment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="138" selection-start-line="138" selection-end-line="146" selection-end-column="16" />
+        <state relative-caret-position="322">
+          <caret line="142" column="29" lean-forward="true" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="29" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
