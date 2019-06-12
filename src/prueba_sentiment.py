@@ -1,5 +1,6 @@
 import sys
 import os
+import random
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -7,9 +8,10 @@ from sklearn.preprocessing import StandardScaler
 import utilities as funcs
 from sklearn.svm import SVC
 from sklearn.preprocessing import LabelEncoder
+from datetime import datetime as dt
 
 
-def get_sentiment_features_df(ROOT_PATH, str):
+def get_sentiment_features_df(ROOT_PATH, traintest_df, str,):
     if (str == 'train'):
         fname = 'train_sentiment_features.csv'
     elif (str == 'test'):
@@ -23,7 +25,15 @@ def get_sentiment_features_df(ROOT_PATH, str):
                  "NEGATIVE": 'az_negative',
                  "NEUTRAL": 'az_neutral'}).drop('amazon_sentiment', axis=1)
 
-    return df
+    df = pd.DataFrame(traintest_df.merge(df,
+                                        left_on='Id',
+                                        right_on='id',
+                                        how='left'))
+
+    cols_to_keep = ['az_positive', 'az_negative', 'az_neutral',
+                    'google_sentiment', 'azure_sentiment']
+
+    return df[cols_to_keep]
 
 
 def count_features_and_scale(df, df_counts):
@@ -87,62 +97,57 @@ if __name__ == '__main__':
     train_df_tr = add_text_clean_col_to_df(train_df_tr)
     train_df_counts = get_features_of_interest_counts(train_df_tr)
     train_df_languages = get_language_df(train_df_tr)
-    train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train')
+    train_df_sentiment = get_sentiment_features_df(ROOT_PATH, train_df_tr, str='train')
+    train_features_count = count_features_and_scale(train_df_tr, train_df_counts)
 
     test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')
     test_df_tr = add_text_clean_col_to_df(test_df_tr)
     test_df_counts = get_features_of_interest_counts(test_df_tr)
     test_df_languages = get_language_df(test_df_tr)
-    test_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='test')
+    test_df_sentiment = get_sentiment_features_df(ROOT_PATH, test_df_tr, str='test')
+    test_features_count = count_features_and_scale(test_df_tr, test_df_counts)
 
-    ## LET's DO A NICE MODEL
-
+    ## MODEL
     y = train_df_tr['party'].values
     y1, y2 = np.unique(y, return_inverse=True)
 
-    # Counts features and scale
-    train_features_count = count_features_and_scale(train_df_tr, train_df_counts)
-    test_features_count = count_features_and_scale(test_df_tr, test_df_counts)
-
-    # Parameter selection (TFIDF)
     tfidf_vectorizer = funcs.StemmedTfidfVectorizer(
-        sublinear_tf=True,  # scaling
-        # strip_accents='unicode',
-        max_df=0.25,  # 0.5,
+        sublinear_tf=True,
+        max_df=0.25,
         min_df=3,
         norm='l2',
-        # token_pattern='#?\w\w+',#r'[^0-9]\w{1,}',#r'#?[^0-9]\w\w+',
         stop_words=funcs.stop_words(),
-        ngram_range=(1, 1),
-        # max_features=4000
-    )
+        ngram_range=(1, 1))
 
     X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
     X_tfidf = np.append(X_tfidf, train_df_languages, 1)
     X_tfidf = np.append(X_tfidf, train_features_count, 1)
     X_tfidf = np.append(X_tfidf, train_df_sentiment, 1)
 
-    X_tfidf_test = tfidf_vectorizer.transform(test_df_tr['text_clean']).toarray()
+    X_tfidf_test = tfidf_vectorizer.fit_transform(test_df_tr['text_clean']).toarray()
     X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_features_count, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
 
     le = LabelEncoder()
     y_encode = le.fit_transform(train_df_tr['party'])
-    X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(X_tfidf,
-                                                                                     y_encode,
-                                                                                     train_df_tr.index,
-                                                                                     test_size=0.25)
-
+    X_train, X_test, y_train, y_test, \
+    indices_train, indices_test = train_test_split(X_tfidf,
+                                                   y_encode,
+                                                   train_df_tr.index,
+                                                   test_size=0.25)
+    random.seed(30)
+    t0 = dt.now()
     clf = SVC(C=1, kernel='linear')
     assert len(X_train) == len(y_train)
     clf.fit(X_train, y_train)
     prediction = clf.predict(X_test)
     print("Prediction: {}".format(np.mean([prediction == y_test])))
-    #
+    t1 = dt.now()
+    print(t1-t0)
+
     # #Create the results file
     # assert len(X_tfidf) == len(y)
     # clf.fit(X_tfidf, y)
     # predictions = clf.predict(X_tfidf_test)
-    # len(X_tfidf_test)
     # funcs.save_submission(predictions, "sample_submission_alvaro_svc")
