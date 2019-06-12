@@ -142,6 +142,8 @@ if __name__ == '__main__':
                                                            train_df_tr.index,
                                                            test_size=0.25)
 
+    from datetime import datetime as dt
+    t0 = dt.now()
     ## model selection ##
     models, maxVote, Stacking = funcs.model_sel(X_train, y_train, X_test, y_test)
 
@@ -153,3 +155,5 @@ if __name__ == '__main__':
 
     ## Create the results file ##
     funcs.save_submission(predictions_, "final_submission_alvaro.csv")
+    t1 = dt.now()
+    print(t1-t0)
