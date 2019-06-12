@@ -8,6 +8,32 @@ from sklearn.preprocessing import LabelEncoder
 from keras.utils.np_utils import to_categorical
 import pandas as pd
 
+
+def get_sentiment_features_df(ROOT_PATH, traintest_df, str, ):
+    if (str == 'train'):
+        fname = 'train_sentiment_features.csv'
+    elif (str == 'test'):
+        fname = 'test_sentiment_features.csv'
+    train_sentiment_raw = pd.read_csv(os.path.join(
+        ROOT_PATH, "Data", fname),
+        delimiter=';').iloc[:, [0, 1, 2, 3]]
+    df = train_sentiment_raw.copy()
+    df = pd.concat([df, pd.get_dummies(df['amazon_sentiment'])], axis=1).rename(
+        columns={'POSITIVE': 'az_positive',
+                 "NEGATIVE": 'az_negative',
+                 "NEUTRAL": 'az_neutral'}).drop('amazon_sentiment', axis=1)
+
+    df = pd.DataFrame(traintest_df.merge(df,
+                                         left_on='Id',
+                                         right_on='id',
+                                         how='left'))
+
+    cols_to_keep = ['az_positive', 'az_negative', 'az_neutral',
+                    'google_sentiment', 'azure_sentiment']
+
+    return df[cols_to_keep]
+
+
 def count_features_and_scale(df, df_counts):
     scaler = StandardScaler()
     counts = df[['retweet_count', 'favorite_count']].apply(lambda x: x + 1)
@@ -43,8 +69,10 @@ def get_language_df(df):
     return pd.DataFrame({'ca': np.where(df['language_id'] == 'ca', 1, 0),
                          'es': np.where(df['language_id'] == 'es', 1, 0),
                          'en': np.where(df['language_id'] == 'en', 1, 0),
-                         'other': df['language_id'].apply(lambda x: 1 if x not in {'ca', 'es', 'en'} else 0)
+                         'other': df['language_id'].apply(
+                             lambda x: 1 if x not in {'ca', 'es', 'en'} else 0)
                          })
+
 
 def get_amazon_sentiment_dummies_df(df):
     return pd.DataFrame({'az_positive': np.where(df['amazon_sentiment'] == 'POSITIVE', 1, 0),
@@ -60,70 +88,59 @@ def add_text_clean_col_to_df(df):
 
 
 if __name__ == '__main__':
-
     # SET PATHS ##
     ROOT_PATH = "C:/workspace/Repositorios/Politicians/"
     PERSONAL_PATH = "Personal/Alvaro"
-
     os.chdir(os.path.join(ROOT_PATH, PERSONAL_PATH))
     sys.path.append(os.path.join(ROOT_PATH, PERSONAL_PATH))
     TRAIN_FPATH = os.path.join(ROOT_PATH, "Data/train_traducido.csv")
     TEST_FPATH = os.path.join(ROOT_PATH, "Data/test_traducido.csv")
 
     ## Load data and Preprocess Data ##
-    train_df_tr = pd.read_csv(TRAIN_FPATH, delimiter=';')  # Load the traductions file
+    print("Data Loading...")
+    train_df_tr = pd.read_csv(TRAIN_FPATH, delimiter=';')
     train_df_tr = remove_tweets_with_non_identified_language(train_df_tr)
     train_df_tr = add_text_clean_col_to_df(train_df_tr)
     train_df_counts = get_features_of_interest_counts(train_df_tr)
     train_df_languages = get_language_df(train_df_tr)
+    train_df_sentiment = get_sentiment_features_df(ROOT_PATH, train_df_tr, str='train')
+    train_features_count = count_features_and_scale(train_df_tr, train_df_counts)
 
-    #train_df_sentiment_raw = pd.read_csv(os.path.join(ROOT_PATH, "Data/train_sentiment_azure.csv"),delimiter=';')
-
-    #train_df_sentiment = pd.DataFrame(train_df_tr.merge(train_df_sentiment_raw,
-    #                                left_on='Id',
-    #                                right_on='id',
-    #                                how='left')['score'])
-
-
-
-    test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')  # Load the traductions file
+    test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')
+    test_df_tr = add_text_clean_col_to_df(test_df_tr)
     test_df_counts = get_features_of_interest_counts(test_df_tr)
     test_df_languages = get_language_df(test_df_tr)
-    test_df_tr = add_text_clean_col_to_df(test_df_tr)
-
-    y = train_df_tr['party'].values
-
-    # Counts features and scale
-    train_features_count = count_features_and_scale(train_df_tr, train_df_counts)
+    test_df_sentiment = get_sentiment_features_df(ROOT_PATH, test_df_tr, str='test')
     test_features_count = count_features_and_scale(test_df_tr, test_df_counts)
 
-    # Parameter selection (TFIDF)
+    ## MODEL ##
+    print("Launching model...")
     tfidf_vectorizer = funcs.StemmedTfidfVectorizer(
-        sublinear_tf=True,  # scaling
-        # strip_accents='unicode',
+        sublinear_tf=True,
         max_df=0.25,  # 0.5,
         min_df=3,
         norm='l2',
-        # token_pattern='#?\w\w+',#r'[^0-9]\w{1,}',#r'#?[^0-9]\w\w+',
         stop_words=funcs.stop_words(),
         ngram_range=(1, 1),
-        # max_features=4000
     )
 
     X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
-    X_tfidf = np.append(X_tfidf,train_df_languages,1)
-    X_tfidf = np.append(X_tfidf, train_features_count,1)
+    X_tfidf = np.append(X_tfidf, train_df_languages, 1)
+    X_tfidf = np.append(X_tfidf, train_features_count, 1)
+    X_tfidf = np.append(X_tfidf, train_df_sentiment.iloc[:, [0, 1, 2]], 1)
 
-    X_tfidf_test = tfidf_vectorizer.transform(test_df_tr['text_clean']).toarray()
-    X_tfidf_test = np.append(X_tfidf_test,test_df_languages,1)
-    X_tfidf_test = np.append(X_tfidf_test, test_features_count,1)
+    X_tfidf_test = tfidf_vectorizer.fit_transform(test_df_tr['text_clean']).toarray()
+    X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_features_count, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
 
     le = LabelEncoder()
     y_encode = le.fit_transform(train_df_tr['party'])
-    X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(X_tfidf,
-                                                                                     y_encode,
-                                                                                     train_df_tr.index,
-                                                                                     test_size=0.25)
+    X_train, X_test, y_train, \
+    y_test, indices_train, indices_test = train_test_split(X_tfidf,
+                                                           y_encode,
+                                                           train_df_tr.index,
+                                                           test_size=0.25)
 
     ## model selection ##
     models, maxVote, Stacking = funcs.model_sel(X_train, y_train, X_test, y_test)
@@ -135,5 +152,4 @@ if __name__ == '__main__':
     predictions_ = le.inverse_transform(predictions_)
 
     ## Create the results file ##
-    funcs.save_submission(predictions_, "sample_submission_mv_alvaro")
-
+    funcs.save_submission(predictions_, "final_submission_alvaro.csv")

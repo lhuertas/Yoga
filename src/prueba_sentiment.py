@@ -1,17 +1,16 @@
 import sys
 import os
-import random
 import numpy as np
-import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 import utilities as funcs
-from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
+from keras.utils.np_utils import to_categorical
+import pandas as pd
+from sklearn.svm import SVC
 from datetime import datetime as dt
 
-
-def get_sentiment_features_df(ROOT_PATH, traintest_df, str,):
+def get_sentiment_features_df(ROOT_PATH, traintest_df, str, ):
     if (str == 'train'):
         fname = 'train_sentiment_features.csv'
     elif (str == 'test'):
@@ -26,9 +25,9 @@ def get_sentiment_features_df(ROOT_PATH, traintest_df, str,):
                  "NEUTRAL": 'az_neutral'}).drop('amazon_sentiment', axis=1)
 
     df = pd.DataFrame(traintest_df.merge(df,
-                                        left_on='Id',
-                                        right_on='id',
-                                        how='left'))
+                                         left_on='Id',
+                                         right_on='id',
+                                         how='left'))
 
     cols_to_keep = ['az_positive', 'az_negative', 'az_neutral',
                     'google_sentiment', 'azure_sentiment']
@@ -71,7 +70,15 @@ def get_language_df(df):
     return pd.DataFrame({'ca': np.where(df['language_id'] == 'ca', 1, 0),
                          'es': np.where(df['language_id'] == 'es', 1, 0),
                          'en': np.where(df['language_id'] == 'en', 1, 0),
-                         'other': df['language_id'].apply(lambda x: 1 if x not in {'ca', 'es', 'en'} else 0)
+                         'other': df['language_id'].apply(
+                             lambda x: 1 if x not in {'ca', 'es', 'en'} else 0)
+                         })
+
+
+def get_amazon_sentiment_dummies_df(df):
+    return pd.DataFrame({'az_positive': np.where(df['amazon_sentiment'] == 'POSITIVE', 1, 0),
+                         'az_neutral': np.where(df['amazon_sentiment'] == 'NEUTRAL', 1, 0),
+                         'az_negative': np.where(df['amazon_sentiment'] == 'NEGATIVE', 1, 0),
                          })
 
 
@@ -85,13 +92,13 @@ if __name__ == '__main__':
     # SET PATHS ##
     ROOT_PATH = "C:/workspace/Repositorios/Politicians/"
     PERSONAL_PATH = "Personal/Alvaro"
-
     os.chdir(os.path.join(ROOT_PATH, PERSONAL_PATH))
     sys.path.append(os.path.join(ROOT_PATH, PERSONAL_PATH))
     TRAIN_FPATH = os.path.join(ROOT_PATH, "Data/train_traducido.csv")
     TEST_FPATH = os.path.join(ROOT_PATH, "Data/test_traducido.csv")
 
     ## Load data and Preprocess Data ##
+    print("Data Loading...")
     train_df_tr = pd.read_csv(TRAIN_FPATH, delimiter=';')
     train_df_tr = remove_tweets_with_non_identified_language(train_df_tr)
     train_df_tr = add_text_clean_col_to_df(train_df_tr)
@@ -107,22 +114,21 @@ if __name__ == '__main__':
     test_df_sentiment = get_sentiment_features_df(ROOT_PATH, test_df_tr, str='test')
     test_features_count = count_features_and_scale(test_df_tr, test_df_counts)
 
-    ## MODEL
-    y = train_df_tr['party'].values
-    y1, y2 = np.unique(y, return_inverse=True)
-
+    ## MODEL ##
+    print("Launching model...")
     tfidf_vectorizer = funcs.StemmedTfidfVectorizer(
         sublinear_tf=True,
-        max_df=0.25,
+        max_df=0.25,  # 0.5,
         min_df=3,
         norm='l2',
         stop_words=funcs.stop_words(),
-        ngram_range=(1, 1))
+        ngram_range=(1, 1),
+    )
 
     X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
     X_tfidf = np.append(X_tfidf, train_df_languages, 1)
     X_tfidf = np.append(X_tfidf, train_features_count, 1)
-    X_tfidf = np.append(X_tfidf, train_df_sentiment, 1)
+    X_tfidf = np.append(X_tfidf, train_df_sentiment.iloc[:, [0, 1, 2]], 1)
 
     X_tfidf_test = tfidf_vectorizer.fit_transform(test_df_tr['text_clean']).toarray()
     X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
@@ -131,14 +137,14 @@ if __name__ == '__main__':
 
     le = LabelEncoder()
     y_encode = le.fit_transform(train_df_tr['party'])
-    X_train, X_test, y_train, y_test, \
-    indices_train, indices_test = train_test_split(X_tfidf,
-                                                   y_encode,
-                                                   train_df_tr.index,
-                                                   test_size=0.25)
-    random.seed(30)
+    X_train, X_test, y_train, \
+    y_test, indices_train, indices_test = train_test_split(X_tfidf,
+                                                           y_encode,
+                                                           train_df_tr.index,
+                                                           test_size=0.25)
+
     t0 = dt.now()
-    clf = SVC(C=1, kernel='linear')
+    clf = SVC(C=1, kernel='linear', random_state=30)
     assert len(X_train) == len(y_train)
     clf.fit(X_train, y_train)
     prediction = clf.predict(X_test)
