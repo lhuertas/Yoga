@@ -5,8 +5,11 @@ from sklearn.model_selection import train_test_split
 import utilities as funcs
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
-from keras.utils.np_utils import to_categorical
+from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
+import datetime as dt
+from keras.utils.np_utils import to_categorical
+
 
 
 def fill_nan_in_matrix_tfidf(X):
@@ -93,9 +96,31 @@ def add_text_clean_col_to_df(df):
     return df
 
 
+def get_day_week(df):
+    df.created_at = pd.to_datetime(df.created_at)
+    day_week = df['created_at'].dt.day_name()
+    ohe = OneHotEncoder(handle_unknown='ignore')
+    day_week = np.array(day_week)
+    day_week = day_week.reshape(-1, 1)
+    day_week = ohe.fit_transform(day_week).toarray()
+    return pd.DataFrame(day_week)
+
+
+def get_part_day(df):
+    new_hours = df.created_at[df.created_at.dt.hour == 0]
+    new_hours2 = new_hours + dt.timedelta(hours=1)
+    df.created_at[df.created_at.dt.hour == 0] = new_hours2
+    part_day = pd.cut(df.created_at.dt.hour, [0, 6, 12, 18, 24], labels=['Night', 'Morning', 'Afternoon', 'Evening'])
+    ohe = OneHotEncoder(handle_unknown='ignore')
+    part_day = np.array(part_day)
+    part_day = part_day.reshape(-1, 1)
+    part_day = ohe.fit_transform(part_day).toarray()
+    return pd.DataFrame(part_day)
+
+
 if __name__ == '__main__':
     # SET PATHS ##
-    ROOT_PATH = "C:/workspace/Repositorios/Politicians/"
+    ROOT_PATH = "C:/workspace/my_repos/Capstone DS/"
     PERSONAL_PATH = "Personal/Alvaro"
     os.chdir(os.path.join(ROOT_PATH, PERSONAL_PATH))
     sys.path.append(os.path.join(ROOT_PATH, PERSONAL_PATH))
@@ -109,6 +134,8 @@ if __name__ == '__main__':
     train_df_tr = add_text_clean_col_to_df(train_df_tr)
     train_df_counts = get_features_of_interest_counts(train_df_tr)
     train_df_languages = get_language_df(train_df_tr)
+    train_df_day_week = get_day_week(train_df_tr)
+    train_df_part_day = get_part_day(train_df_tr)
     train_df_sentiment = get_sentiment_features_df(ROOT_PATH, train_df_tr, str='train')
     train_features_count = count_features_and_scale(train_df_tr, train_df_counts)
 
@@ -117,13 +144,15 @@ if __name__ == '__main__':
     test_df_counts = get_features_of_interest_counts(test_df_tr)
     test_df_languages = get_language_df(test_df_tr)
     test_df_sentiment = get_sentiment_features_df(ROOT_PATH, test_df_tr, str='test')
+    test_df_day_week = get_day_week(test_df_tr)
+    test_df_part_day = get_part_day(test_df_tr)
     test_features_count = count_features_and_scale(test_df_tr, test_df_counts)
 
     ## MODEL ##
     print("Launching model...")
     tfidf_vectorizer = funcs.StemmedTfidfVectorizer(
         sublinear_tf=True,
-        max_df=0.25,  # 0.5,
+        max_df=0.25,
         min_df=3,
         norm='l2',
         stop_words=funcs.stop_words(),
@@ -133,12 +162,16 @@ if __name__ == '__main__':
     X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
     X_tfidf = np.append(X_tfidf, train_df_languages, 1)
     X_tfidf = np.append(X_tfidf, train_features_count, 1)
+    X_tfidf = np.append(X_tfidf, train_df_day_week, 1)
+    X_tfidf = np.append(X_tfidf, train_df_part_day, 1)
     X_tfidf = np.append(X_tfidf, train_df_sentiment, 1)
 
     X_tfidf_test = tfidf_vectorizer.transform(test_df_tr['text_clean']).toarray()
     X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_features_count, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_df_day_week, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_df_part_day, 1)
     fill_nan_in_matrix_tfidf(X_tfidf_test)
 
     le = LabelEncoder()
@@ -149,8 +182,8 @@ if __name__ == '__main__':
                                                            train_df_tr.index,
                                                            test_size=0.25)
 
-    from datetime import datetime as dt
-    t0 = dt.now()
+
+    t0 = dt.datetime.now()
     ## model selection ##
     models, maxVote, Stacking = funcs.model_sel(X_train, y_train, X_test, y_test)
 
@@ -162,5 +195,5 @@ if __name__ == '__main__':
 
     ## Create the results file ##
     funcs.save_submission(predictions_, "final_submission_alvaro.csv")
-    t1 = dt.now()
+    t1 = dt.datetime.now()
     print(t1-t0)
