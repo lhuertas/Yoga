@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import functions as funcs
+import utilities as funcs
 from sklearn.svm import SVC
 from sklearn.preprocessing import LabelEncoder
 
@@ -139,10 +139,10 @@ if __name__ == '__main__':
     clf.fit(X_train, y_train)
     prediction = clf.predict(X_test)
     print("Prediction: {}".format(np.mean([prediction == y_test])))
-
-    #Create the results file
-    assert len(X_tfidf) == len(y)
-    clf.fit(X_tfidf, y)
-    predictions = clf.predict(X_tfidf_test)
-    len(X_tfidf_test)
-    funcs.save_submission(predictions, "sample_submission_alvaro_svc")
+    #
+    # #Create the results file
+    # assert len(X_tfidf) == len(y)
+    # clf.fit(X_tfidf, y)
+    # predictions = clf.predict(X_tfidf_test)
+    # len(X_tfidf_test)
+    # funcs.save_submission(predictions, "sample_submission_alvaro_svc")

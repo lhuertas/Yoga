@@ -1,8 +1,6 @@
 #### Retrieve sentiment analysis from Azure Text Analysis API Tool ####
 
 import http.client, urllib.request, urllib.parse, urllib.error
-import json
-import os
 from alvaro_final import *
 from google.cloud import language
 from google.cloud.language import enums
@@ -92,7 +90,7 @@ def set_up_df_for_sentiment_analysis(df):
 
 
 if __name__ == '__main__':
-    DO_PREPROCESS = False
+    DO_PREPROCESS = True
     DO_AZURE = False
     DO_GOOGLE = False
     DO_AMAZON = False
@@ -191,16 +189,16 @@ if __name__ == '__main__':
     ### AMAZON SENTIMENT ANALYSIS ###
 
     if (DO_MERGING == True):
-        AMAZON_TRAIN_FPATH = os.path.join(ROOT_PATH, "Data/sentiment/train_sentiment_amazon.csv")
-        GOOGLE_TRAIN_FPATH = os.path.join(ROOT_PATH, "Data/sentiment/train_sentiment_google_scaled.csv")
-        AZURE_TRAIN_FPATH = os.path.join(ROOT_PATH, "Data/sentiment/train_sentiment_azure.csv")
+        AMAZON_TEST_FPATH = os.path.join(ROOT_PATH, "Data/sentiment/test_sentiment_amazon.csv")
+        GOOGLE_TEST_FPATH = os.path.join(ROOT_PATH, "Data/sentiment/test_sentiment_google_scaled.csv")
+        AZURE_TEST_FPATH = os.path.join(ROOT_PATH, "Data/sentiment/test_sentiment_azure.csv")
 
-        amazon_df = pd.read_csv(AMAZON_TRAIN_FPATH, sep = ';')[['id', 'sentiment']]
+        amazon_df = pd.read_csv(AMAZON_TEST_FPATH, sep = ';')[['id', 'sentiment']]
         amazon_df.rename(columns={'sentiment': 'amazon_sentiment'}, inplace=True)
-        google_df = pd.read_csv(GOOGLE_TRAIN_FPATH, sep = ';')[['id', 'sentiment', 'emotion']]
+        google_df = pd.read_csv(GOOGLE_TEST_FPATH, sep = ';')[['id', 'sentiment', 'emotion']]
         google_df.rename(columns={'sentiment': 'google_sentiment',
                                   'emotion': 'google_emotion'}, inplace=True)
-        azure_df = pd.read_csv(AZURE_TRAIN_FPATH, sep = ';')
+        azure_df = pd.read_csv(AZURE_TEST_FPATH, sep = ';')
         azure_df.rename(columns={'score': 'azure_sentiment'}, inplace=True)
 
         amazon_df.head()
@@ -214,20 +212,20 @@ if __name__ == '__main__':
                                        on='id',
                                        how='left')
 
-        sentiment_df['azure_sentiment'] = sentiment_df['azure_sentiment'].map(lambda x: round(x,2))
-        sentiment_df['google_sentiment'] = sentiment_df['google_sentiment'].map(lambda x: round(x,2))
-        sentiment_df['google_emotion'] =sentiment_df['google_emotion'].map(lambda x: round(x,2))
+        sentiment_df['azure_sentiment'] = sentiment_df['azure_sentiment'].map(lambda x: round(float(x),2))
+        sentiment_df['google_sentiment'] = sentiment_df['google_sentiment'].map(lambda x: round(float(x),2))
+        sentiment_df['google_emotion'] =sentiment_df['google_emotion'].map(lambda x: round(float(x),2))
 
-        sentiment_info_df = train_df_tr[['Id', 'username', 'party', 'text_clean']]
+        sentiment_info_df = test_df_tr[['Id', 'text_clean']]
         cols = ['id', "amazon_sentiment", "azure_sentiment", "google_sentiment", "google_emotion",
-                'text_clean','username', 'party']
+                'text_clean']
         final_df = sentiment_df.merge(sentiment_info_df,
                                       left_on = 'id',
                                       right_on = 'Id',
                                       how='left')[cols]
 
         final_df.to_csv(
-            os.path.join(ROOT_PATH, "Data/train_sentiment_features.csv"), index=False, sep=';')
+            os.path.join(ROOT_PATH, "Data/test_sentiment_features.csv"), index=False, sep=';')
 
         df = final_df[final_df['amazon_sentiment'] == 'POSITIVE']
         c_df = df.groupby(['party']).agg({'amazon_sentiment':'count'})

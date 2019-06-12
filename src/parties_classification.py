@@ -30,6 +30,7 @@ def remove_tweets_with_non_identified_language(df):
 
     return df
 
+
 def get_features_of_interest_counts(df):
     return pd.DataFrame({'words': df['text'].apply(lambda x: funcs.number_words(x)),
                          'emoticons': df['text'].apply(lambda x: funcs.number_emoticons(x)),
@@ -43,6 +44,12 @@ def get_language_df(df):
                          'es': np.where(df['language_id'] == 'es', 1, 0),
                          'en': np.where(df['language_id'] == 'en', 1, 0),
                          'other': df['language_id'].apply(lambda x: 1 if x not in {'ca', 'es', 'en'} else 0)
+                         })
+
+def get_amazon_sentiment_dummies_df(df):
+    return pd.DataFrame({'az_positive': np.where(df['amazon_sentiment'] == 'POSITIVE', 1, 0),
+                         'az_neutral': np.where(df['amazon_sentiment'] == 'NEUTRAL', 1, 0),
+                         'az_negative': np.where(df['amazon_sentiment'] == 'NEGATIVE', 1, 0),
                          })
 
 
@@ -76,6 +83,8 @@ if __name__ == '__main__':
     #                                left_on='Id',
     #                                right_on='id',
     #                                how='left')['score'])
+
+
 
     test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')  # Load the traductions file
     test_df_counts = get_features_of_interest_counts(test_df_tr)
@@ -111,7 +120,8 @@ if __name__ == '__main__':
 
     le = LabelEncoder()
     y_encode = le.fit_transform(train_df_tr['party'])
-    X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(X_tfidf, y_encode,
+    X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(X_tfidf,
+                                                                                     y_encode,
                                                                                      train_df_tr.index,
                                                                                      test_size=0.25)
 

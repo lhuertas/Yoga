@@ -4,7 +4,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="182">
+          <list size="185">
             <item index="0" class="java.lang.String" itemvalue="numba" />
             <item index="1" class="java.lang.String" itemvalue="greenlet" />
             <item index="2" class="java.lang.String" itemvalue="Babel" />
@@ -187,6 +187,9 @@
             <item index="179" class="java.lang.String" itemvalue="colorama" />
             <item index="180" class="java.lang.String" itemvalue="ply" />
             <item index="181" class="java.lang.String" itemvalue="openpyxl" />
+            <item index="182" class="java.lang.String" itemvalue="re" />
+            <item index="183" class="java.lang.String" itemvalue="os" />
+            <item index="184" class="java.lang.String" itemvalue="sys" />
           </list>
         </value>
       </option>
