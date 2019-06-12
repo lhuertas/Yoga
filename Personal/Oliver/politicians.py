@@ -57,9 +57,7 @@ df_counts = pd.DataFrame({ 'username' : train_df_tr['username'].values,
 #y = train_df_tr['username'].values
 #y1, y2 = np.unique(y, return_inverse=True)
 
-
-### without imbalanced data ###
-# target
+#target
 y = train_df_tr['username'].values
 y1, y2 = np.unique(y, return_inverse=True)
 values, tweet_counts = np.unique(y, return_counts=True)
@@ -67,6 +65,7 @@ politicians = pd.DataFrame({'values': values,
                             'tweet_counts': tweet_counts})
 politicians['tweet_counts'].plot.hist() # Disbalanced
 
+### without imbalanced data ###
 max_tweet = np.max(politicians['tweet_counts'])
 
 # todos los políticos con mismo número de tweets
@@ -81,6 +80,14 @@ for pol in politicians['values']:
 pol_df_total.reset_index(inplace=True, drop=True)
 train_df_tr = pol_df_total.copy()
 del(pol_df_total)
+
+#target
+y = train_df_tr['username'].values
+y1, y2 = np.unique(y, return_inverse=True)
+values, tweet_counts = np.unique(y, return_counts=True)
+politicians = pd.DataFrame({'values': values,
+                            'tweet_counts': tweet_counts})
+politicians['tweet_counts'].plot.hist() 
 
 # counts per politician
 df_counts = pd.DataFrame({ 'username' : train_df_tr['username'].values,
@@ -275,10 +282,96 @@ print("Prediction: {}".format(np.mean([pred == y_test])))
 
 
 
+######### create X_tfidf_test ##########
 
 
+#removing indentified languages
+test_df_tr.drop(test_df_tr[(test_df_tr['language_id']=='lb') | (test_df_tr['language_id']=='co')].index, inplace=True)
+test_df_tr.reset_index(inplace=True, drop=True)
+
+# counts per politician
+df_counts = pd.DataFrame({ 
+                           'words' : test_df_tr['text'].apply(lambda x: funcs.number_words(x)),
+                           'emoticons' : test_df_tr['text'].apply(lambda x: funcs.number_emoticons(x)),
+                           'hashtags' : test_df_tr['text'].apply(lambda x: funcs.number_hashtags(x)),
+                           'mentions' : test_df_tr['text'].apply(lambda x: funcs.number_mentions(x)),
+                         })
+
+#----------- 3. Preprocess data
+
+
+
+# -----------------------------------------------
+
+
+
+
+
+
+test_df_tr['text_clean'] = test_df_tr['traducciones'].apply(lambda x: funcs.clean_text(x))
+
+# language feature
+language = pd.DataFrame({ 'ca' : np.where(test_df_tr['language_id']=='ca', 1, 0),
+                          'es' : np.where(test_df_tr['language_id']=='es', 1, 0),
+                          'en' : np.where(test_df_tr['language_id']=='en', 1, 0),
+                          'other' : test_df_tr['language_id'].apply(lambda x: 1 if x not in {'ca','es','en'} else 0)
+                        })
+
+# day of week feature
+test_df_tr.created_at = pd.to_datetime(test_df_tr.created_at)
+day_week = test_df_tr['created_at'].dt.day_name()
+ohe = OneHotEncoder(handle_unknown='ignore')
+day_week = np.array(day_week)
+day_week = day_week.reshape(-1, 1)
+day_week = ohe.fit_transform(day_week).toarray()
+
+# part of day feature
+new_hours = test_df_tr.created_at[test_df_tr.created_at.dt.hour == 0]
+new_hours2 = new_hours + dt.timedelta(hours=1)
+test_df_tr.created_at[test_df_tr.created_at.dt.hour == 0] = new_hours2
+part_day = pd.cut(test_df_tr.created_at.dt.hour,[0,6,12,18,24],labels=['Night','Morning','Afternoon','Evening'])
+ohe = OneHotEncoder(handle_unknown='ignore')
+part_day = np.array(part_day)
+part_day = part_day.reshape(-1, 1)
+part_day = ohe.fit_transform(part_day).toarray()
+del(new_hours, new_hours2)
+
+# Counts features and scale
+scaler = StandardScaler()
+counts = test_df_tr[['retweet_count','favorite_count']].apply(lambda x: x+1)
+counts = pd.DataFrame()
+counts['counts_emoticons'] = df_counts.emoticons.apply(lambda x: x+1)
+counts['counts_hashtags'] = df_counts.hashtags.apply(lambda x: x+1)
+counts['counts_mentions'] = df_counts.mentions.apply(lambda x: x+1)
+counts['counts_words'] = df_counts.words.apply(lambda x: x+1)
+counts = np.log10(counts)
+#counts['engagement_rate'] = df_counts.engagement_rate
+features_counts = scaler.fit_transform(counts)
+features_counts = pd.DataFrame(features_counts)
+
+
+# Parameter selection (TFIDF)
+# tfidf matrix
+tfidf_vectorizer = funcs.StemmedTfidfVectorizer(
+        sublinear_tf = True, #scaling
+        #strip_accents='unicode',
+        max_df = 0.25,#0.5,
+        min_df = 3,
+        norm='l2',
+        #token_pattern='#?\w\w+',#r'[^0-9]\w{1,}',#r'#?[^0-9]\w\w+',
+        stop_words=funcs.stop_words(),
+        ngram_range=(1,1),
+        #max_features=4000
+        )
+
+X_tfidf = tfidf_vectorizer.fit_transform(test_df_tr['text_clean']).toarray()
+X_tfidf = np.append(X_tfidf,language,1)
+X_tfidf = np.append(X_tfidf, features_counts,1)
+X_tfidf = np.append(X_tfidf, day_week, 1)
+X_tfidf = np.append(X_tfidf, part_day, 1)
+X_tfidf_test = X_tfidf
 
 # Create the results file
 clf = SVC(X_tfidf,y)
-predictions = clf.predict(X_tfidf_test)
+predictions = rfc1.predict(X_tfidf_test)
 funcs.save_submission(predictions, "sample_submission_svc")
