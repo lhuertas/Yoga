@@ -5,10 +5,15 @@ from sklearn.model_selection import train_test_split
 import utilities as funcs
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
-from keras.utils.np_utils import to_categorical
 import pandas as pd
 from sklearn.svm import SVC
 from datetime import datetime as dt
+
+def fill_nan_in_matrix_tfidf(X):
+    ix_list = np.argwhere(np.isnan(X)).tolist()
+    for ix in ix_list:
+        X[ix[0], ix[1]] = 0.5
+
 
 def get_sentiment_features_df(ROOT_PATH, traintest_df, str, ):
     if (str == 'train'):
@@ -128,12 +133,13 @@ if __name__ == '__main__':
     X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
     X_tfidf = np.append(X_tfidf, train_df_languages, 1)
     X_tfidf = np.append(X_tfidf, train_features_count, 1)
-    X_tfidf = np.append(X_tfidf, train_df_sentiment.iloc[:, [0, 1, 2]], 1)
+    X_tfidf = np.append(X_tfidf, train_df_sentiment, 1)
 
-    X_tfidf_test = tfidf_vectorizer.fit_transform(test_df_tr['text_clean']).toarray()
+    X_tfidf_test = tfidf_vectorizer.transform(test_df_tr['text_clean']).toarray()
     X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_features_count, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
+    fill_nan_in_matrix_tfidf(X_tfidf_test)
 
     le = LabelEncoder()
     y_encode = le.fit_transform(train_df_tr['party'])
@@ -145,15 +151,14 @@ if __name__ == '__main__':
 
     t0 = dt.now()
     clf = SVC(C=1, kernel='linear', random_state=30)
-    assert len(X_train) == len(y_train)
-    clf.fit(X_train, y_train)
-    prediction = clf.predict(X_test)
-    print("Prediction: {}".format(np.mean([prediction == y_test])))
-    t1 = dt.now()
-    print(t1-t0)
+    # assert len(X_train) == len(y_train)
+    # clf.fit(X_train, y_train)
+    # prediction = clf.predict(X_test)
+    # print("Prediction: {}".format(np.mean([prediction == y_test])))
+    # t1 = dt.now()
+    # print(t1-t0)
 
-    # #Create the results file
-    # assert len(X_tfidf) == len(y)
-    # clf.fit(X_tfidf, y)
-    # predictions = clf.predict(X_tfidf_test)
-    # funcs.save_submission(predictions, "sample_submission_alvaro_svc")
+    #Create the results file
+    clf.fit(X_tfidf, y_encode)
+    predictions = clf.predict(X_tfidf_test)
+    #funcs.save_submission(predictions, "sample_submission_alvaro_svc")

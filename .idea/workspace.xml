@@ -30,10 +30,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/prueba_sentiment.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="251">
-                  <caret line="149" column="36" lean-forward="true" selection-start-line="149" selection-start-column="36" selection-end-line="149" selection-end-column="36" />
+                <state relative-caret-position="557">
+                  <caret line="163" column="13" selection-start-line="163" selection-start-column="13" selection-end-line="163" selection-end-column="13" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
+                    <element signature="e#385#481#0" />
                     <element signature="e#352#1268#0" />
                     <element signature="e#1320#1874#0" />
                     <element signature="e#1933#2142#0" />
@@ -45,7 +46,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/utilities.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
+                <state relative-caret-position="-1786">
                   <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
@@ -70,10 +71,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1228">
-                  <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+                <state relative-caret-position="72">
+                  <caret line="151" selection-start-line="151" selection-end-line="165" selection-end-column="16" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
+                    <element signature="e#316#412#0" />
                     <element signature="e#352#1265#0" />
                     <element signature="e#333#887#0" />
                     <element signature="e#946#1155#0" />
@@ -147,16 +149,15 @@
         <option value="$PROJECT_DIR$/src/utilities.py" />
         <option value="$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py" />
         <option value="$PROJECT_DIR$/Personal/Alvaro/alvaro_final.py" />
-        <option value="$PROJECT_DIR$/src/parties_classification.py" />
         <option value="$PROJECT_DIR$/src/prueba_sentiment.py" />
+        <option value="$PROJECT_DIR$/src/parties_classification.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="240" />
-    <option name="y" value="130" />
-    <option name="width" value="1440" />
-    <option name="height" value="780" />
+    <option name="x" value="644" />
+    <option name="width" value="1283" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -226,7 +227,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.prueba_sentiment">
+  <component name="RunManager" selected="Python.parties_classification">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -318,9 +319,6 @@
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -413,7 +411,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.38136512" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.5016251" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -671,7 +669,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="-1786">
           <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -681,10 +679,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/prueba_sentiment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="149" column="36" lean-forward="true" selection-start-line="149" selection-start-column="36" selection-end-line="149" selection-end-column="36" />
+        <state relative-caret-position="557">
+          <caret line="163" column="13" selection-start-line="163" selection-start-column="13" selection-end-line="163" selection-end-column="13" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#385#481#0" />
             <element signature="e#352#1268#0" />
             <element signature="e#1320#1874#0" />
             <element signature="e#1933#2142#0" />
@@ -694,10 +693,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1228">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="72">
+          <caret line="151" selection-start-line="151" selection-end-line="165" selection-end-column="16" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#316#412#0" />
             <element signature="e#352#1265#0" />
             <element signature="e#333#887#0" />
             <element signature="e#946#1155#0" />

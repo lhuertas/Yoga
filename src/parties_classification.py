@@ -9,6 +9,12 @@ from keras.utils.np_utils import to_categorical
 import pandas as pd
 
 
+def fill_nan_in_matrix_tfidf(X):
+    ix_list = np.argwhere(np.isnan(X)).tolist()
+    for ix in ix_list:
+        X[ix[0], ix[1]] = 0.5
+
+
 def get_sentiment_features_df(ROOT_PATH, traintest_df, str, ):
     if (str == 'train'):
         fname = 'train_sentiment_features.csv'
@@ -127,12 +133,13 @@ if __name__ == '__main__':
     X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
     X_tfidf = np.append(X_tfidf, train_df_languages, 1)
     X_tfidf = np.append(X_tfidf, train_features_count, 1)
-    X_tfidf = np.append(X_tfidf, train_df_sentiment.iloc[:, [0, 1, 2]], 1)
+    X_tfidf = np.append(X_tfidf, train_df_sentiment, 1)
 
-    X_tfidf_test = tfidf_vectorizer.fit_transform(test_df_tr['text_clean']).toarray()
+    X_tfidf_test = tfidf_vectorizer.transform(test_df_tr['text_clean']).toarray()
     X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_features_count, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
+    fill_nan_in_matrix_tfidf(X_tfidf_test)
 
     le = LabelEncoder()
     y_encode = le.fit_transform(train_df_tr['party'])
