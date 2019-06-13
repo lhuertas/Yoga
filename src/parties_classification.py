@@ -12,10 +12,10 @@ from keras.utils.np_utils import to_categorical
 
 
 
-def fill_nan_in_matrix_tfidf(X):
+def fill_nan_in_matrix(X, value):
     ix_list = np.argwhere(np.isnan(X)).tolist()
     for ix in ix_list:
-        X[ix[0], ix[1]] = 0.5
+        X[ix[0], ix[1]] = value
 
 
 def get_sentiment_features_df(ROOT_PATH, traintest_df, str, ):
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_day_week, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_part_day, 1)
-    fill_nan_in_matrix_tfidf(X_tfidf_test)
+    fill_nan_in_matrix(X_tfidf_test, value=0.5)
 
     le = LabelEncoder()
     y_encode = le.fit_transform(train_df_tr['party'])
@@ -194,6 +194,6 @@ if __name__ == '__main__':
     predictions_ = le.inverse_transform(predictions_)
 
     ## Create the results file ##
-    funcs.save_submission(predictions_, "final_submission_alvaro.csv")
+    funcs.save_submission(predictions_, "yoga_submission")
     t1 = dt.datetime.now()
     print(t1-t0)

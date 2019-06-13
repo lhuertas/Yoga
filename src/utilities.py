@@ -165,7 +165,7 @@ def model_sel(x_train, y_train, x_test, y_test):
 
 def save_submission(prediction, fileName='sample_submission'):
     import datetime
-    t = datetime.datetime.now().strftime("%Y%m%d-%H:%M:%S")
+    t = datetime.datetime.now().strftime("%Y%m%d-%H_%M_")
     output = pd.DataFrame({'Party': prediction})
     output.index.name = 'Id'
     output.to_csv(f'{fileName}_{t}.csv')
