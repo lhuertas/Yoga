@@ -11,6 +11,12 @@ from sklearn.preprocessing import OneHotEncoder
 import datetime as dt
 
 
+def fill_nan_in_matrix(X, value):
+    ix_list = np.argwhere(np.isnan(X)).tolist()
+    for ix in ix_list:
+        X[ix[0], ix[1]] = value
+
+
 def get_sentiment_features_df(ROOT_PATH, str):
     if (str == 'train'):
         fname = 'train_sentiment_features.csv'
@@ -92,38 +98,57 @@ def get_part_day(df):
     part_day = ohe.fit_transform(part_day).toarray()
     return pd.DataFrame(part_day)
     
-def balance_dataset(df):
-    
-    #target
-    y = df['username'].values
-    y1, y2 = np.unique(y, return_inverse=True)
-    values, tweet_counts = np.unique(y, return_counts=True)
-    politicians = pd.DataFrame({'values': values,
-                                'tweet_counts': tweet_counts})
-    
-    
-    max_tweet = np.max(politicians['tweet_counts'])
+#def balance_dataset(df, sentiment):
+#    
+#    ''' return balanced train df & balanced sentiment analysis '''
+#    
+#    #target
+#    y = df['username'].values
+#    y1, y2 = np.unique(y, return_inverse=True)
+#    values, tweet_counts = np.unique(y, return_counts=True)
+#    politicians = pd.DataFrame({'values': values,
+#                                'tweet_counts': tweet_counts})
+#    
+#    
+#    max_tweet = np.max(politicians['tweet_counts'])
+#    
+#    df = pd.concat([df, sentiment], axis=1)
+#
+#    # todos los políticos con mismo número de tweets
+#    pol_df_total = train_df_tr.iloc[0:0]
+#    for pol in politicians['values']:
+#        pol_df = train_df_tr[train_df_tr.username == pol]
+#        if pol == 'olallamarga':
+#            pol_df = pol_df.loc[pol_df.index.repeat(20)]
+#        pol_df = pd.concat([pol_df, pol_df[0:max_tweet-len(pol_df)]], axis=0)
+#        pol_df_total = pd.concat([pol_df_total, pol_df], axis=0)
+#    
+#    pol_df_total.reset_index(inplace=True, drop=True)
+#    
+#    sentiment_cols = ['id', 
+#                      'azure_sentiment',
+#                      'google_sentiment',
+#                      'MIXED',
+#                      'az_negative',
+#                      'az_neutral',
+#                      'az_positive']
+#    
+#    train_cols = ['Id', 'username', 'text', 'created_at', 'retweet_count',
+#                   'favorite_count', 'no_of_characters', 'language', 'text_modif',
+#                   'language_id', 'traducciones', 'text_clean']
+#    
+#    new_train = pol_df_total.copy()
+#    new_sentiment = pol_df_total.copy()
+#    
+#    new_sentiment = new_sentiment.filter(sentiment_cols)
+#    new_train = new_train.filter(train_cols)
+#    
+#    return new_train, new_sentiment
 
-    # todos los políticos con mismo número de tweets
-    pol_df_total = df.iloc[0:0]
-    for pol in politicians['values']:
-        pol_df = df[df.username == pol]
-        if pol == 'olallamarga':
-            pol_df = pol_df.loc[pol_df.index.repeat(20)]
-        pol_df = pd.concat([pol_df, pol_df[0:max_tweet-len(pol_df)]], axis=0)
-        pol_df_total = pd.concat([pol_df_total, pol_df], axis=0)
-    
-    pol_df_total.reset_index(inplace=True, drop=True)
-    df = pol_df_total.copy()
-    del(pol_df_total)
-    
-    #target
-    y = df['username'].values
-    y1, y2 = np.unique(y, return_inverse=True)
-    values, tweet_counts = np.unique(y, return_counts=True)
-    politicians = pd.DataFrame({'values': values,
-                                'tweet_counts': tweet_counts})
-    return df, politicians
+
+
+
+
 
 
 
@@ -141,11 +166,61 @@ if __name__ == '__main__':
     train_df_tr = pd.read_csv(TRAIN_FPATH, delimiter=';')
     train_df_tr = remove_tweets_with_non_identified_language(train_df_tr)
     train_df_tr = add_text_clean_col_to_df(train_df_tr)
+    
+    train_df_tr.drop('party', axis=1, inplace=True) 
+    
+    ##################################################
+          #####     balancing dataset   #######   
+    ##################################################
+
+    train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train') # load sentiment
+    #train_df_tr, train_df_sentiment = balance_dataset(train_df_tr, train_df_sentiment) NO SE PORQ NO VA!!!!!
+    
+    ##target
+    y = train_df_tr['username'].values
+    y1, y2 = np.unique(y, return_inverse=True)
+    values, tweet_counts = np.unique(y, return_counts=True)
+    politicians = pd.DataFrame({'values': values,
+                                'tweet_counts': tweet_counts})
+    
+    
+    max_tweet = np.max(politicians['tweet_counts'])
+    
+    train_df_tr = pd.concat([train_df_tr, train_df_sentiment], axis=1)
+    
+    
+    # todos los políticos con mismo número de tweets
+    pol_df_total = train_df_tr.iloc[0:0]
+    for pol in politicians['values']:
+        pol_df = train_df_tr[train_df_tr.username == pol]
+        if pol == 'olallamarga':
+            pol_df = pol_df.loc[pol_df.index.repeat(20)]
+        pol_df = pd.concat([pol_df, pol_df[0:max_tweet-len(pol_df)]], axis=0)
+        pol_df_total = pd.concat([pol_df_total, pol_df], axis=0)
+    
+    pol_df_total.reset_index(inplace=True, drop=True)
+    
+    sentiment_cols = ['id', 'azure_sentiment','google_sentiment', 'MIXED', 'az_negative', 'az_neutral','az_positive']
+    train_cols = ['Id', 'username', 'text', 'created_at', 'retweet_count',
+                   'favorite_count', 'no_of_characters', 'language', 'text_modif',
+                   'language_id', 'traducciones', 'text_clean']
+    
+    sentiment_df = pol_df_total.filter(sentiment_cols)
+    pol_df_total = pol_df_total.filter(train_cols)
+    
+    train_df_tr = pol_df_total.copy()
+    train_df_sentiment = sentiment_df.copy()
+    del(sentiment_cols, train_cols, pol_df,pol, max_tweet, politicians, 
+        values, tweet_counts, y1, y2, y)
+    ##################################################
+    
+    
+    
     train_df_counts = get_features_of_interest_counts(train_df_tr)
     train_df_languages = get_language_df(train_df_tr)
     train_df_day_week = get_day_week(train_df_tr)
     train_df_part_day = get_part_day(train_df_tr)
-    train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train')
+    #train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train')
 
     test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')
     test_df_tr = add_text_clean_col_to_df(test_df_tr)
@@ -156,11 +231,6 @@ if __name__ == '__main__':
     test_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='test')
 
     ## LET's DO A NICE MODEL
-    
-    train_df_tr.drop('party', axis=1, inplace=True)
-    
-    #balancing dataset    
-    train_df_tr, politicians = balance_dataset(train_df_tr)
 
     y = train_df_tr['username'].values
     y1, y2 = np.unique(y, return_inverse=True)
@@ -195,9 +265,10 @@ if __name__ == '__main__':
     X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_day_week, 1)
     X_tfidf_test = np.append(X_tfidf_test, test_df_part_day, 1)
+    fill_nan_in_matrix(X_tfidf_test, value=0.5)
 
     le = LabelEncoder()
-    y_encode = le.fit_transform(train_df_tr['party'])
+    y_encode = le.fit_transform(train_df_tr['username'])
     X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(X_tfidf,
                                                                                      y_encode,
                                                                                      train_df_tr.index,
