@@ -219,15 +219,12 @@ if __name__ == '__main__':
                                                    test_size=0.25)
 
     clf = SVC(C=1, kernel='linear')
-    assert len(X_train) == len(y_train)
     clf.fit(X_train, y_train)
     prediction = clf.predict(X_test)
     print("Prediction: {}".format(np.mean([prediction == y_test])))
 
-    #
-    # #Create the results file
-    # assert len(X_tfidf) == len(y) == len(X_tfidf_test)
-    # clf.fit(X_tfidf, y)
-    # predictions = clf.predict(X_tfidf_test)
-    # len(X_tfidf_test)
-    # funcs.save_submission(predictions, "sample_submission_svc_politicians")
+    #Create the results file
+    clf.fit(X_tfidf, y)
+    predictions = clf.predict(X_tfidf_test)
+    len(X_tfidf_test)
+    save_submission_politicians(predictions, "sample_submission_svc_politicians")

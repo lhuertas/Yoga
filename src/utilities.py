@@ -170,3 +170,9 @@ def save_submission(prediction, fileName='sample_submission'):
     output.index.name = 'Id'
     output.to_csv(f'{fileName}_{t}.csv')
 
+def save_submission_politicians(prediction, fileName='sample_submission'):
+    import datetime
+    t = datetime.datetime.now().strftime("%Y%m%d-%H_%M_")
+    output = pd.DataFrame({'username': prediction})
+    output.index.name = 'Id'
+    output.to_csv(f'{fileName}_{t}.csv')

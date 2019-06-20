@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adf054e2-bb72-49d2-9e98-1f1f12ef78d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/politicians_classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Yoga.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Yoga.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/noticia.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parties_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/parties_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/politicians_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/politicians_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,42 +15,29 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5663492">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/politicians_classification.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="220" selection-start-line="220" selection-end-line="224" selection-end-column="67" />
-                  <folding>
-                    <element signature="e#540#1476#0" />
-                    <element signature="e#1154#1708#0" />
-                    <element signature="e#3651#4771#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="43" selection-start-line="43" selection-end-line="43" />
-                  <folding>
-                    <element signature="e#562#1478#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/politicians_classification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="167" column="29" selection-start-line="167" selection-end-line="168" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/noticia.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -115,21 +102,23 @@
         <option value="$PROJECT_DIR$/src/prueba_sentiment.py" />
         <option value="$PROJECT_DIR$/Personal/Oliver/alvaro_final_parties.py" />
         <option value="$PROJECT_DIR$/src/utilities.py" />
-        <option value="$PROJECT_DIR$/src/parties_classification.py" />
         <option value="$PROJECT_DIR$/src/politicians_classification.py" />
+        <option value="$PROJECT_DIR$/src/parties_classification.py" />
+        <option value="$PROJECT_DIR$/src/noticia.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="644" />
-    <option name="width" value="1283" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-11" />
+    <option name="width" value="1151" />
+    <option name="height" value="1031" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -140,25 +129,19 @@
             <path>
               <item name="Politicians" type="b2602c69:ProjectViewProjectNode" />
               <item name="Politicians" type="462c0819:PsiDirectoryNode" />
-              <item name="Personal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Politicians" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Politicians" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/politicians_classification.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/noticia.py" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -188,7 +171,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.politicians_classification">
+  <component name="RunManager" selected="Python.noticia">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -276,6 +259,24 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="noticia" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
+      <module name="Yoga" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/noticia.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="parties_classification" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -301,6 +302,9 @@
       <module name="Yoga" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -362,10 +366,11 @@
       <item itemvalue="Python.amazon_sentiment_feature" />
       <item itemvalue="Python.google_cloud_translator" />
       <item itemvalue="Python.google_sentiment_analysis" />
-      <item itemvalue="Python.sentiment_feature" />
-      <item itemvalue="Python.prueba_sentiment" />
       <item itemvalue="Python.parties_classification" />
       <item itemvalue="Python.politicians_classification" />
+      <item itemvalue="Python.noticia" />
+      <item itemvalue="Python.prueba_sentiment" />
+      <item itemvalue="Python.sentiment_feature" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -382,10 +387,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="767" height="687" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17017913" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18194254" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -398,7 +402,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.23293608" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.5935252" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -424,8 +428,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Personal/Oscar/test.py" />
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/test.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/testy.py" />
     <entry file="file://C:/conda3/Lib/ntpath.py" />
@@ -585,16 +587,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/submissions/sample_submission.csv" />
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Personal/Alvaro/sentiment_feature.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -651,32 +643,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="172" selection-start-line="172" selection-end-line="172" />
+        <state relative-caret-position="2567">
+          <caret line="172" selection-start-line="172" selection-end-line="177" selection-end-column="40" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="1037">
+          <caret line="67" column="52" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
           <folding>
-            <element signature="e#562#1478#0" />
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AVE Finder/src/ticket_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="65" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#358#634#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/politicians_classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="220" selection-start-line="220" selection-end-line="224" selection-end-column="67" />
+        <state relative-caret-position="221">
+          <caret line="167" column="29" selection-start-line="167" selection-end-line="168" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/noticia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="8" />
           <folding>
-            <element signature="e#540#1476#0" />
-            <element signature="e#1154#1708#0" />
-            <element signature="e#3651#4771#0" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

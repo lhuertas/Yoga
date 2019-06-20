@@ -37,7 +37,7 @@ def get_sentiment_features_df(ROOT_PATH, traintest_df, str, ):
                                          right_on='id',
                                          how='left'))
 
-    cols_to_keep = ['az_positive', 'az_negative', 'az_neutral',
+    cols_to_keep = ['Id','az_positive', 'az_negative', 'az_neutral',
                     'google_sentiment', 'azure_sentiment', 'google_emotion']
 
     return df[cols_to_keep]
