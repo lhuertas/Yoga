@@ -321,13 +321,17 @@ a = pd.DataFrame(df.to_records(),
                  columns=df.index.names + list(df.columns))
 
 b = df.stack().reset_index()
+b = df.stack(level=0).reset_index()
+#df.unstack()
 #b = df.stack(level=1).reset_index(level=1, drop=True).reset_index()
 #------------------------------
-    
+
+
+#b = pd.melt(b, id_vars =['level_2'], value_vars =['count'])
 sns.set()
 fg = sns.pairplot(b, hue='party').add_legend()   
 fig = fg.fig
-fig.set_size_inches(11, 14)
+fig.set_size_inches(11, 11)
 
 
    
