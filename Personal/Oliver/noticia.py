@@ -209,24 +209,24 @@ if __name__ == '__main__':
         ax.legend(loc='best')
         return plt.show()
 
-    def create_plot2(feature1, feature2, feature_color):
-        x = feature1
-        y = feature2
-        
-        lista = list(np.unique(train_df_tr[feature_color]))
-        sns.set_style("whitegrid")
-        fg = sns.FacetGrid(data=train_df_tr,
-                           col=y,
-                           row=x,
-                           hue=feature_color, hue_order=lista, aspect=1.61)
-        fg.map(plt.scatter, 'Weight (kg)', 'Height (cm)').add_legend()
-        
-#        fig = plt.figure()
-#        ax = fig.add_subplot(111)
-#        ax.scatter(train_df_tr[x], train_df_tr[y])
-#        ax.set_xlim(giveme_max_min(feature1)[1], giveme_max_min(feature1)[0])
-#        ax.set_ylim(giveme_max_min(feature2)[1], giveme_max_min(feature2)[0])
-        return plt.show()
+#    def create_plot2(feature1, feature2, feature_color):
+#        x = feature1
+#        y = feature2
+#        
+#        lista = list(np.unique(train_df_tr[feature_color]))
+#        sns.set_style("whitegrid")
+#        fg = sns.FacetGrid(data=train_df_tr,
+#                           col=y,
+#                           row=x,
+#                           hue=feature_color, hue_order=lista, aspect=1.61)
+#        fg.map(plt.scatter, 'Weight (kg)', 'Height (cm)').add_legend()
+#        
+##        fig = plt.figure()
+##        ax = fig.add_subplot(111)
+##        ax.scatter(train_df_tr[x], train_df_tr[y])
+##        ax.set_xlim(giveme_max_min(feature1)[1], giveme_max_min(feature1)[0])
+##        ax.set_ylim(giveme_max_min(feature2)[1], giveme_max_min(feature2)[0])
+#        return plt.show()
 
     def create_plot3(feature1, feature2, feature_color):
         x = feature1
@@ -243,7 +243,88 @@ if __name__ == '__main__':
         fig = fg.fig
         fig.set_size_inches(10, 12)
         return plt.show()
+    
+    def create_plot3_1(feature1, feature2, feature_color):
+        x = feature1
+        y = feature2
+        
+        list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
+        col_names = [x,y,feature_color]
+        df = pd.DataFrame(list_of_series, columns=col_names)
+        df = pd.concat(list_of_series, axis=1)
+        
+        
+        fg = sns.FacetGrid(data=df, hue=feature_color, hue_order=lista, aspect=1.61)
+        fg.map(plt.scatter, x, y, alpha= 0.4).add_legend()
+        fig = fg.fig
+        fig.set_size_inches(10, 12)
+        return plt.show()
 
+    def create_plot4(feature1, feature2, feature_color, freq_time):
+        '''
+        freq_time = 'M', 'Y', ...
+        ej: create_plot4('created_at', 'google_sentiment', 'party', 'M')
+        '''
+        x = feature1
+        y = feature2
+        
+        list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
+        col_names = [x,y,feature_color]
+        df = pd.DataFrame(list_of_series, columns=col_names)
+        df = pd.concat(list_of_series, axis=1)
+        
+        df.created_at = pd.to_datetime(df.created_at)
+        df = df.groupby([pd.Grouper(key='created_at', freq=freq_time),
+                         pd.Grouper(key=feature_color)]).agg(['count', 'mean'])
+        
+        b = df.stack(level=0).reset_index()
+                
+        sns.set()
+        fg = sns.pairplot(b, hue=feature_color).add_legend()   
+        fig = fg.fig
+        fig.set_size_inches(11, 11)
+        return plt.show()
+    
+    def create_plot5(feature1, feature2, feature_color, freq_time, tipo, tipo_aggr, transparency, ancho, largo):
+        '''
+        feature 1: 'created_at'
+        feature 2: 'google_sentiment', 'azure_sentiment'
+        freq_time = 'M', 'Y', ...
+        tipo = 'point',  ...
+        tipo_aggr = 'count', 'mean' .. (alguna func que previamente se haya aggr)
+        transparency = 0.1, 0.2 ...
+        ancho = 30,...
+        largo = 12,..
+        ej: create_plot5('created_at', 'google_sentiment', 'party', 'M', 'point', 0.1, 30, 12)
+        '''
+        x = feature1
+        y = feature2
+        
+        list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
+        col_names = [x,y,feature_color]
+        df = pd.DataFrame(list_of_series, columns=col_names)
+        df = pd.concat(list_of_series, axis=1)
+        
+        df.created_at = pd.to_datetime(df.created_at)
+        df = df.groupby([pd.Grouper(key='created_at', freq=freq_time),
+                         pd.Grouper(key=feature_color)]).agg(['count', 'mean'])
+        
+        b = df.stack(level=0).reset_index()
+                
+        sns.set()
+        fg = sns.factorplot(x=feature1, 
+                            y=tipo_aggr, 
+                            hue=feature_color, 
+                            data=b, kind='point',
+                            plot_kws={
+                                      'points_kws': {'alpha': transparency}})
+        fg.set_xlabels('')
+        fg.set_xticklabels(rotation=30)
+        fig, ax = fg.fig, fg.ax
+        fig.set_size_inches(ancho, largo)
+        if tipo_aggr == 'mean':
+            ax.axhline(0.5, ls='--')
+        return plt.show()
     
     def plot_uniqueval_column(feature):
         y1, y2 = np.unique(train_df_tr[feature], return_inverse=True)
@@ -304,6 +385,36 @@ x = 'created_at'
 y = 'google_sentiment'
 feature_color = 'party'
 
+list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
+col_names = [x,y,feature_color]
+df = pd.DataFrame(list_of_series, columns=col_names)
+df = pd.concat(list_of_series, axis=1)
+
+df.created_at = pd.to_datetime(df.created_at)
+df = df.groupby([pd.Grouper(key='created_at', freq='M'),
+                 pd.Grouper(key=feature_color)]).agg(['count', 'mean'])
+
+b = df.stack(level=0).reset_index()
+        
+sns.set()
+fg = sns.factorplot(x, 
+                    y = 'count', 
+                    hue=feature_color, 
+                    data=b, kind='point',
+                    plot_kws={
+                              'points_kws': {'alpha': 0.1}})
+fg.set_xlabels('')
+fg.set_xticklabels(rotation=30)
+fig = fg.fig
+fig.set_size_inches(20, 12)
+
+
+
+
+
+
+
+
 lista = list(np.unique(train_df_tr[feature_color]))
 
 
@@ -317,10 +428,10 @@ df.created_at = pd.to_datetime(df.created_at)
 df = df.groupby([pd.Grouper(key='created_at', freq='M'),
                  pd.Grouper(key='party')]).agg(['count', 'mean'])
 
-a = pd.DataFrame(df.to_records(),
-                 columns=df.index.names + list(df.columns))
+#a = pd.DataFrame(df.to_records(),
+#                 columns=df.index.names + list(df.columns))
 
-b = df.stack().reset_index()
+#b = df.stack().reset_index()
 b = df.stack(level=0).reset_index()
 #df.unstack()
 #b = df.stack(level=1).reset_index(level=1, drop=True).reset_index()
@@ -338,11 +449,29 @@ fig.set_size_inches(11, 11)
 a.boxplot(by='created_at')
 a.set_xticklabels(rotation=30)    
 
-fg = sns.factorplot(x='created_at', y='google_sentiment', hue='party', 
-                        #col='Sex', 
-                        data=a, kind='bar')
+fg = sns.factorplot(x='created_at', y='mean', hue='party', 
+                        data=b, kind='point',
+                        plot_kws={
+                                  'points_kws': {'alpha': 0.1}})
 fg.set_xlabels('')
 fg.set_xticklabels(rotation=30)
+fig = fg.fig
+fig.set_size_inches(30, 12)
+
+fg = sns.catplot(x='created_at', y='mean', hue='party',
+                        #col='Sex',
+                        data=b, kind='boxen')
+fg.set_xlabels('')
+fg.set_xticklabels(rotation=30)
+fig = fg.fig
+fig.set_size_inches(30, 12)
+
+
+fg = sns.catplot(x="party", y="mean", kind="boxen",
+                 data=b)
+fg.set_xticklabels(rotation=30)
+fig = fg.fig
+fig.set_size_inches(14, 10)
 #df = df.set_index(x)
 
 def dateplot(x, y, **kwargs):
