@@ -339,6 +339,7 @@ if __name__ == '__main__':
         return ax
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #-------------------------------- CORRELATION -----------------------------
 
@@ -366,6 +367,9 @@ df_party_1 = df1_1[df1_1.party == 'bcomu']
 df_party_1 = df_party_1.filter(items=['party', 'mean'])
 df_party_1.reset_index(inplace=True, drop=True)
 
+=======
+create_plot5('created_at', 'google_sentiment', 'party', 'M', 'point', 0.1, 30, 12)
+>>>>>>> e540c748b43a9d5990bd2cb0b88f4c3ceef123ce
 
 
 def heatMap(df, kind):
