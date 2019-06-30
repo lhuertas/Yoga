@@ -2,7 +2,7 @@ import sys
 import os
 import numpy as np
 from sklearn.model_selection import train_test_split
-import utilities as funcs
+#import utilities as funcs
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
