@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="adf054e2-bb72-49d2-9e98-1f1f12ef78d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/Yoga.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Yoga.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Personal/Oliver/noticia.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal/Oliver/noticia.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Politician tweets analysis-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Politician tweets analysis-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notebooks/Politician tweets analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/Politician tweets analysis.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/noticia.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/noticia.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parties_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/parties_classification.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,27 +16,61 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Personal/Oliver/noticia.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="104" column="36" lean-forward="true" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+            <state relative-caret-position="157">
+              <caret line="372" selection-start-line="372" selection-end-line="374" selection-end-column="23" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#714#812#0" />
+                <element signature="e#866#1433#0" />
+                <element signature="e#1271#1384#0" />
+                <element signature="e#1485#2039#0" />
+                <element signature="e#2098#2307#0" />
+                <element signature="e#2355#2738#0" />
+                <element signature="e#2375#2737#0" />
+                <element signature="e#2770#3124#0" />
+                <element signature="e#2790#3123#0" />
+                <element signature="e#3165#3254#0" />
+                <element signature="e#3282#3582#0" />
+                <element signature="e#3610#4091#0" />
+                <element signature="e#4097#4133#0" />
+                <element signature="e#5865#12852#0" />
+                <element signature="e#6451#6500#0" />
+                <element signature="e#6988#7080#0" />
+                <element signature="e#7150#7844#0" />
+                <element signature="e#7846#7903#0" />
+                <element signature="e#8701#9222#0" />
+                <element signature="e#9295#9816#0" />
+                <element signature="e#9894#10750#0" />
+                <element signature="e#9894#10016#1" />
+                <element signature="e#10389#10491#0" />
+                <element signature="e#10877#12423#0" />
+                <element signature="e#10877#11302#1" />
+                <element signature="e#11675#11777#0" />
+                <element signature="e#12108#12186#0" />
+                <element signature="e#12477#12852#0" />
+                <element signature="e#12648#12718#0" />
+                <element signature="e#13581#13678#0" />
+                <element signature="e#14939#15021#0" />
+                <element signature="e#15047#15081#0" />
+                <element signature="e#15210#15223#0" />
+                <element signature="e#15697#15762#0" />
+                <element signature="e#11832#11929#0" />
+                <element signature="e#12715#12795#0" />
+                <element signature="e#12879#12932#0" />
+                <element signature="e#15299#15308#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/noticia.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="163" selection-start-line="163" selection-end-line="173" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
             </state>
           </provider>
         </entry>
@@ -46,7 +78,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="34">
               <caret line="10" selection-start-line="10" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="e#27#45#0" expanded="true" />
@@ -82,6 +114,7 @@
       <find>train_df_tr</find>
       <find>test</find>
       <find>ption</find>
+      <find>sns.ca</find>
     </findStrings>
     <replaceStrings>
       <replace>df</replace>
@@ -131,15 +164,15 @@
         <option value="$PROJECT_DIR$/Personal/Oliver/alvaro_final_parties.py" />
         <option value="$PROJECT_DIR$/src/utilities.py" />
         <option value="$PROJECT_DIR$/src/politicians_classification.py" />
-        <option value="$PROJECT_DIR$/Personal/Oliver/noticia.py" />
         <option value="$PROJECT_DIR$/Personal/Alvaro/noticia_alvaro.py" />
         <option value="$PROJECT_DIR$/src/parties_classification.py" />
+        <option value="$PROJECT_DIR$/Personal/Oliver/noticia.py" />
         <option value="$PROJECT_DIR$/src/noticia.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
+    <option name="x" value="1913" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -148,6 +181,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,12 +198,6 @@
               <item name="Capstone DS" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone DS" type="462c0819:PsiDirectoryNode" />
               <item name="Personal" type="462c0819:PsiDirectoryNode" />
-              <item name="Alvaro" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Capstone DS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Capstone DS" type="462c0819:PsiDirectoryNode" />
-              <item name="Personal" type="462c0819:PsiDirectoryNode" />
               <item name="Oliver" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -181,13 +209,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Personal/Alvaro" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AVE%20Finder" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -434,9 +461,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="1913" y="0" width="974" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22647703" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2964989" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -449,10 +477,12 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
-      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.40043762" />
+      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.2964989" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="right" id="R Packages" order="4" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2027027" />
@@ -698,23 +728,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/noticia_alvaro.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1378">
-          <caret line="267" column="13" lean-forward="true" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Personal/Alvaro/noticia_alvaro.py" />
     <entry file="file://$PROJECT_DIR$/Personal/Alvaro/google_cloud_translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="34">
           <caret line="10" selection-start-line="10" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="e#27#45#0" expanded="true" />
@@ -722,23 +739,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/noticia.py">
+    <entry file="file://$PROJECT_DIR$/src/parties_classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="163" selection-start-line="163" selection-end-line="173" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="493">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Personal/Oliver/noticia.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="104" column="36" lean-forward="true" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+        <state relative-caret-position="157">
+          <caret line="372" selection-start-line="372" selection-end-line="374" selection-end-column="23" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#714#812#0" />
+            <element signature="e#866#1433#0" />
+            <element signature="e#1271#1384#0" />
+            <element signature="e#1485#2039#0" />
+            <element signature="e#2098#2307#0" />
+            <element signature="e#2355#2738#0" />
+            <element signature="e#2375#2737#0" />
+            <element signature="e#2770#3124#0" />
+            <element signature="e#2790#3123#0" />
+            <element signature="e#3165#3254#0" />
+            <element signature="e#3282#3582#0" />
+            <element signature="e#3610#4091#0" />
+            <element signature="e#4097#4133#0" />
+            <element signature="e#5865#12852#0" />
+            <element signature="e#6451#6500#0" />
+            <element signature="e#6988#7080#0" />
+            <element signature="e#7150#7844#0" />
+            <element signature="e#7846#7903#0" />
+            <element signature="e#8701#9222#0" />
+            <element signature="e#9295#9816#0" />
+            <element signature="e#9894#10750#0" />
+            <element signature="e#9894#10016#1" />
+            <element signature="e#10389#10491#0" />
+            <element signature="e#10877#12423#0" />
+            <element signature="e#10877#11302#1" />
+            <element signature="e#11675#11777#0" />
+            <element signature="e#12108#12186#0" />
+            <element signature="e#12477#12852#0" />
+            <element signature="e#12648#12718#0" />
+            <element signature="e#13581#13678#0" />
+            <element signature="e#14939#15021#0" />
+            <element signature="e#15047#15081#0" />
+            <element signature="e#15210#15223#0" />
+            <element signature="e#15697#15762#0" />
+            <element signature="e#11832#11929#0" />
+            <element signature="e#12715#12795#0" />
+            <element signature="e#12879#12932#0" />
+            <element signature="e#15299#15308#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/noticia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
         </state>
       </provider>
     </entry>
