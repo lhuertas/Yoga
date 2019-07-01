@@ -1,7 +1,6 @@
 import sys
 import imp
 import os
-
 os.chdir("/Users/oliver/YOGA/Yoga/Personal/Oliver/")
 sys.path.append("/Users/oliver/YOGA/Yoga/Personal/Oliver/")
 sys.path.insert(0, "/Users/oliver/YOGA/Yoga/Personal/Oliver/")
@@ -87,7 +86,6 @@ def add_text_clean_col_to_df(df):
 
     return df
 
-
 def get_day_week(df):
     df.created_at = pd.to_datetime(df.created_at)
     day_week = df['created_at'].dt.day_name()
@@ -97,20 +95,18 @@ def get_day_week(df):
     day_week = ohe.fit_transform(day_week).toarray()
     return pd.DataFrame(day_week)
 
-
 def get_part_day(df):
     new_hours = df.created_at[df.created_at.dt.hour == 0]
     new_hours2 = new_hours + dt.timedelta(hours=1)
     df.created_at[df.created_at.dt.hour == 0] = new_hours2
-    part_day = pd.cut(df.created_at.dt.hour, [0, 6, 12, 18, 24], labels=['Night', 'Morning', 'Afternoon', 'Evening'])
+    part_day = pd.cut(df.created_at.dt.hour,[0,6,12,18,24],labels=['Night','Morning','Afternoon','Evening'])
     ohe = OneHotEncoder(handle_unknown='ignore')
     part_day = np.array(part_day)
     part_day = part_day.reshape(-1, 1)
     part_day = ohe.fit_transform(part_day).toarray()
     return pd.DataFrame(part_day)
-
-
-# def balance_dataset(df, sentiment):
+    
+#def balance_dataset(df, sentiment):
 #    
 #    ''' return balanced train df & balanced sentiment analysis '''
 #    
@@ -158,6 +154,12 @@ def get_part_day(df):
 #    return new_train, new_sentiment
 
 
+
+
+
+
+
+
 if __name__ == '__main__':
     # SET PATHS ##
     ROOT_PATH = "/Users/oliver/YOGA/Yoga/"
@@ -172,34 +174,32 @@ if __name__ == '__main__':
     train_df_tr = pd.read_csv(TRAIN_FPATH, delimiter=';')
     train_df_tr = remove_tweets_with_non_identified_language(train_df_tr)
     train_df_tr = add_text_clean_col_to_df(train_df_tr)
-
-    # train_df_tr.drop('party', axis=1, inplace=True)
-
+    
+    #train_df_tr.drop('party', axis=1, inplace=True) 
+    
     ##################################################
-    #####     balancing dataset   #######
+          #####     balancing dataset   #######   
     ##################################################
 
-    train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train')  # load sentiment
-    # train_df_tr, train_df_sentiment = balance_dataset(train_df_tr, train_df_sentiment) NO SE PORQ NO VA!!!!!
-
+    train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train') # load sentiment
+    #train_df_tr, train_df_sentiment = balance_dataset(train_df_tr, train_df_sentiment) NO SE PORQ NO VA!!!!!
+    
     train_df_tr = pd.concat([train_df_tr, train_df_sentiment], axis=1)
-
 
     def giveme_max_min(feature):
         x = np.max(train_df_tr[feature])
         y = np.min(train_df_tr[feature])
-        return x, y
-
-
+        return x,y
+    
     def create_plot(feature1, feature2, feature_color):
         x = feature1
         y = feature2
         fig = plt.figure()
-
+        
         categories = np.unique(train_df_tr[feature_color])
         colors = np.linspace(0, 1, len(categories))
         colordict = dict(zip(categories, colors))
-
+        
         train_df_tr["Color"] = train_df_tr[feature_color].apply(lambda x: colordict[x])
         ax = fig.add_subplot(111)
         ax.scatter(train_df_tr[x], train_df_tr[y], c=train_df_tr.Color)
@@ -209,57 +209,56 @@ if __name__ == '__main__':
         ax.legend(loc='best')
         return plt.show()
 
-
-    #    def create_plot2(feature1, feature2, feature_color):
-    #        x = feature1
-    #        y = feature2
-    #
-    #        lista = list(np.unique(train_df_tr[feature_color]))
-    #        sns.set_style("whitegrid")
-    #        fg = sns.FacetGrid(data=train_df_tr,
-    #                           col=y,
-    #                           row=x,
-    #                           hue=feature_color, hue_order=lista, aspect=1.61)
-    #        fg.map(plt.scatter, 'Weight (kg)', 'Height (cm)').add_legend()
-    #
-    ##        fig = plt.figure()
-    ##        ax = fig.add_subplot(111)
-    ##        ax.scatter(train_df_tr[x], train_df_tr[y])
-    ##        ax.set_xlim(giveme_max_min(feature1)[1], giveme_max_min(feature1)[0])
-    ##        ax.set_ylim(giveme_max_min(feature2)[1], giveme_max_min(feature2)[0])
-    #        return plt.show()
+#    def create_plot2(feature1, feature2, feature_color):
+#        x = feature1
+#        y = feature2
+#        
+#        lista = list(np.unique(train_df_tr[feature_color]))
+#        sns.set_style("whitegrid")
+#        fg = sns.FacetGrid(data=train_df_tr,
+#                           col=y,
+#                           row=x,
+#                           hue=feature_color, hue_order=lista, aspect=1.61)
+#        fg.map(plt.scatter, 'Weight (kg)', 'Height (cm)').add_legend()
+#        
+##        fig = plt.figure()
+##        ax = fig.add_subplot(111)
+##        ax.scatter(train_df_tr[x], train_df_tr[y])
+##        ax.set_xlim(giveme_max_min(feature1)[1], giveme_max_min(feature1)[0])
+##        ax.set_ylim(giveme_max_min(feature2)[1], giveme_max_min(feature2)[0])
+#        return plt.show()
 
     def create_plot3(feature1, feature2, feature_color):
         x = feature1
         y = feature2
-
+        
         list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
-        col_names = [x, y, feature_color]
+        col_names = [x,y,feature_color]
         df = pd.DataFrame(list_of_series, columns=col_names)
         df = pd.concat(list_of_series, axis=1)
-
+        
+        
         fg = sns.FacetGrid(data=df, hue=feature_color, hue_order=lista, aspect=1.61)
-        fg.map(plt.scatter, x, y, alpha=0.4).add_legend()
+        fg.map(plt.scatter, x, y, alpha= 0.4).add_legend()
         fig = fg.fig
         fig.set_size_inches(10, 12)
         return plt.show()
-
-
+    
     def create_plot3_1(feature1, feature2, feature_color):
         x = feature1
         y = feature2
-
+        
         list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
-        col_names = [x, y, feature_color]
+        col_names = [x,y,feature_color]
         df = pd.DataFrame(list_of_series, columns=col_names)
         df = pd.concat(list_of_series, axis=1)
-
+        
+        
         fg = sns.FacetGrid(data=df, hue=feature_color, hue_order=lista, aspect=1.61)
-        fg.map(plt.scatter, x, y, alpha=0.4).add_legend()
+        fg.map(plt.scatter, x, y, alpha= 0.4).add_legend()
         fig = fg.fig
         fig.set_size_inches(10, 12)
         return plt.show()
-
 
     def create_plot4(feature1, feature2, feature_color, freq_time):
         '''
@@ -268,25 +267,24 @@ if __name__ == '__main__':
         '''
         x = feature1
         y = feature2
-
+        
         list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
-        col_names = [x, y, feature_color]
+        col_names = [x,y,feature_color]
         df = pd.DataFrame(list_of_series, columns=col_names)
         df = pd.concat(list_of_series, axis=1)
-
+        
         df.created_at = pd.to_datetime(df.created_at)
         df = df.groupby([pd.Grouper(key='created_at', freq=freq_time),
                          pd.Grouper(key=feature_color)]).agg(['count', 'mean'])
-
+        
         b = df.stack(level=0).reset_index()
-
+                
         sns.set()
-        fg = sns.pairplot(b, hue=feature_color).add_legend()
+        fg = sns.pairplot(b, hue=feature_color).add_legend()   
         fig = fg.fig
         fig.set_size_inches(11, 11)
         return plt.show()
-
-
+    
     def create_plot5(feature1, feature2, feature_color, freq_time, tipo, tipo_aggr, transparency, ancho, largo):
         '''
         feature 1: 'created_at'
@@ -301,25 +299,25 @@ if __name__ == '__main__':
         '''
         x = feature1
         y = feature2
-
+        
         list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
-        col_names = [x, y, feature_color]
+        col_names = [x,y,feature_color]
         df = pd.DataFrame(list_of_series, columns=col_names)
         df = pd.concat(list_of_series, axis=1)
-
+        
         df.created_at = pd.to_datetime(df.created_at)
         df = df.groupby([pd.Grouper(key='created_at', freq=freq_time),
                          pd.Grouper(key=feature_color)]).agg(['count', 'mean'])
-
+        
         b = df.stack(level=0).reset_index()
-
+                
         sns.set()
-        fg = sns.factorplot(x=feature1,
-                            y=tipo_aggr,
-                            hue=feature_color,
+        fg = sns.factorplot(x=feature1, 
+                            y=tipo_aggr, 
+                            hue=feature_color, 
                             data=b, kind='point',
                             plot_kws={
-                                'points_kws': {'alpha': transparency}})
+                                      'points_kws': {'alpha': transparency}})
         fg.set_xlabels('')
         fg.set_xticklabels(rotation=30)
         fig, ax = fg.fig, fg.ax
@@ -327,19 +325,16 @@ if __name__ == '__main__':
         if tipo_aggr == 'mean':
             ax.axhline(0.5, ls='--')
         return plt.show()
-
-
+    
     def plot_uniqueval_column(feature):
         y1, y2 = np.unique(train_df_tr[feature], return_inverse=True)
         values, feature_ = np.unique(train_df_tr[feature], return_counts=True)
         output = pd.DataFrame({'values': values,
                                'feature': feature_})
         ax = output['feature'].plot()
-        # ax.set_xlim(giveme_max_min(feature)[1], giveme_max_min(feature)[0])
+        #ax.set_xlim(giveme_max_min(feature)[1], giveme_max_min(feature)[0])
         return ax
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 #-------------------------------- CORRELATION -----------------------------
 
@@ -367,9 +362,6 @@ df_party_1 = df1_1[df1_1.party == 'bcomu']
 df_party_1 = df_party_1.filter(items=['party', 'mean'])
 df_party_1.reset_index(inplace=True, drop=True)
 
-=======
-create_plot5('created_at', 'google_sentiment', 'party', 'M', 'point', 0.1, 30, 12)
->>>>>>> e540c748b43a9d5990bd2cb0b88f4c3ceef123ce
 
 
 def heatMap(df, kind):
@@ -411,65 +403,89 @@ def heatmap_full(df, sinceWhen, freq_time, sentiment, kind_agg):
     
 
 #------------------------------------------------------------------------
-=======
-create_plot5('created_at', 'google_sentiment', 'party', 'M', 'point', 0.1, 30, 12)
->>>>>>> e540c748b43a9d5990bd2cb0b88f4c3ceef123ce
 
 x = 'azure_sentiment'
 y = 'google_sentiment'
 feature_color = 'username'
 
 lista = list(np.unique(train_df_tr[feature_color]))
+
 list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
-col_names = [x, y, feature_color]
+col_names = [x,y,feature_color]
 df = pd.DataFrame(list_of_series, columns=col_names)
 df = pd.concat(list_of_series, axis=1)
 
 fg = sns.FacetGrid(data=df, hue=feature_color, hue_order=lista, aspect=1.61)
 fg.map(plt.scatter, x, y).add_legend()
 
+
+
+
+
+
+
+
+
+
+
 df = pd.DataFrame(
-    data=np.random.randn(90, 4),
-    columns=pd.Series(list("ABCD"), name="walk"),
-    index=pd.date_range("2015-01-01", "2015-03-31",
-                        name="date"))
+data=np.random.randn(90, 4),
+columns=pd.Series(list("ABCD"), name="walk"),
+index=pd.date_range("2015-01-01", "2015-03-31",
+                      name="date"))
 df = df.cumsum(axis=0).stack().reset_index(name="val")
-
-
 def dateplot(x, y, **kwargs):
     ax = plt.gca()
     data = kwargs.pop("data")
     data.plot(x=x, y=y, ax=ax, grid=False, **kwargs)
-
-
 g = sns.FacetGrid(df, col="walk", col_wrap=2, height=3.5)
 g = g.map_dataframe(dateplot, "date", "val")
+
+
+
+
+
 
 x = 'created_at'
 y = 'google_sentiment'
 feature_color = 'party'
+
 list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
-col_names = [x, y, feature_color]
+col_names = [x,y,feature_color]
 df = pd.DataFrame(list_of_series, columns=col_names)
 df = pd.concat(list_of_series, axis=1)
+
 df.created_at = pd.to_datetime(df.created_at)
 df = df.groupby([pd.Grouper(key='created_at', freq='M'),
                  pd.Grouper(key=feature_color)]).agg(['count', 'mean'])
+
 b = df.stack(level=0).reset_index()
-fg = sns.catplot(x,
-                 y='count',
-                 hue=feature_color,
-                 data=b,
-                 kind='strip')
+        
+sns.set()
+fg = sns.factorplot(x, 
+                    y = 'count', 
+                    hue=feature_color, 
+                    data=b, kind='point',
+                    plot_kws={
+                              'points_kws': {'alpha': 0.1}})
 fg.set_xlabels('')
 fg.set_xticklabels(rotation=30)
 fig = fg.fig
 fig.set_size_inches(20, 12)
 
+
+
+
+
+
+
+
 lista = list(np.unique(train_df_tr[feature_color]))
 
+
+
 list_of_series = [train_df_tr[x], train_df_tr[y], train_df_tr[feature_color]]
-col_names = [x, y, feature_color]
+col_names = [x,y,feature_color]
 df = pd.DataFrame(list_of_series, columns=col_names)
 df = pd.concat(list_of_series, axis=1)
 
@@ -477,83 +493,153 @@ df.created_at = pd.to_datetime(df.created_at)
 df = df.groupby([pd.Grouper(key='created_at', freq='M'),
                  pd.Grouper(key='party')]).agg(['count', 'mean'])
 
-# a = pd.DataFrame(df.to_records(),
+#a = pd.DataFrame(df.to_records(),
 #                 columns=df.index.names + list(df.columns))
 
-# b = df.stack().reset_index()
+#b = df.stack().reset_index()
 b = df.stack(level=0).reset_index()
-# df.unstack()
-# b = df.stack(level=1).reset_index(level=1, drop=True).reset_index()
-# ------------------------------
+#df.unstack()
+#b = df.stack(level=1).reset_index(level=1, drop=True).reset_index()
+#------------------------------
 
 
-# b = pd.melt(b, id_vars =['level_2'], value_vars =['count'])
+#b = pd.melt(b, id_vars =['level_2'], value_vars =['count'])
 sns.set()
-fg = sns.pairplot(b, hue='party').add_legend()
+fg = sns.pairplot(b, hue='party').add_legend()   
 fig = fg.fig
 fig.set_size_inches(11, 11)
 
-a.boxplot(by='created_at')
-a.set_xticklabels(rotation=30)
 
-fg = sns.factorplot(x='created_at', y='mean', hue='party',
-                    data=b, kind='point',
-                    plot_kws={
-                        'points_kws': {'alpha': 0.1}})
+   
+a.boxplot(by='created_at')
+a.set_xticklabels(rotation=30)    
+
+fg = sns.factorplot(x='created_at', y='mean', hue='party', 
+                        data=b, kind='point',
+                        plot_kws={
+                                  'points_kws': {'alpha': 0.1}})
 fg.set_xlabels('')
 fg.set_xticklabels(rotation=30)
 fig = fg.fig
 fig.set_size_inches(30, 12)
 
 fg = sns.catplot(x='created_at', y='mean', hue='party',
-                 # col='Sex',
-                 data=b, kind='boxen')
+                        #col='Sex',
+                        data=b, kind='boxen')
 fg.set_xlabels('')
 fg.set_xticklabels(rotation=30)
 fig = fg.fig
 fig.set_size_inches(30, 12)
+
 
 fg = sns.catplot(x="party", y="mean", kind="boxen",
                  data=b)
 fg.set_xticklabels(rotation=30)
 fig = fg.fig
 fig.set_size_inches(14, 10)
-
-
-# df = df.set_index(x)
+#df = df.set_index(x)
 
 def dateplot(x, y, **kwargs):
     ax = plt.gca()
     data = kwargs.pop("data")
     data.plot(x=x, y=y, ax=ax, grid=False, **kwargs)
-
-
+    
 g = sns.FacetGrid(df)
 g = g.map_dataframe(dateplot, x, y)
 
-# -------------------------------------------------
+#-------------------------------------------------
 
 np.random.seed(45)
-a = pd.DataFrame(index=range(10),
+a = pd.DataFrame(index=range(10), 
                  columns=pd.MultiIndex.from_product(
-                     iterables=[['2000', '2010'], ['a', 'b']],
-                     names=['Year', 'Text']),
-                 data=np.random.randn(10, 4))
+                         iterables=[['2000', '2010'], ['a', 'b']], 
+                         names=['Year', 'Text']), 
+                 data=np.random.randn(10,4))
 
 b = a.stack(level=0).reset_index(level=0, drop=True).reset_index()
-print(b)
+print (b)
 
-##target
-party = train_df_tr['party'].values
-politicians = train_df_tr['username'].values
 
-y1, y2 = np.unique(y, return_inverse=True)
-values, tweet_counts = np.unique(y, return_counts=True)
-politicians = pd.DataFrame({'values': values,
-                            'tweet_counts': tweet_counts})
 
-max_tweet = np.max(politicians['tweet_counts'])
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    ##target
+    party = train_df_tr['party'].values
+    politicians = train_df_tr['username'].values
+    
+    
+    y1, y2 = np.unique(y, return_inverse=True)
+    values, tweet_counts = np.unique(y, return_counts=True)
+    politicians = pd.DataFrame({'values': values,
+                                'tweet_counts': tweet_counts})
+    
+    
+    max_tweet = np.max(politicians['tweet_counts'])
+    
+    
+    
+    
 #    # todos los políticos con mismo número de tweets
 #    pol_df_total = train_df_tr.iloc[0:0]
 #    for pol in politicians['values']:
@@ -578,75 +664,141 @@ max_tweet = np.max(politicians['tweet_counts'])
 #    del(sentiment_cols, train_cols, pol_df,pol, max_tweet, politicians, 
 #        values, tweet_counts, y1, y2, y)
 #    ##################################################
+    
+    
+    
+    train_df_counts = get_features_of_interest_counts(train_df_tr)
+    train_df_languages = get_language_df(train_df_tr)
+    train_df_day_week = get_day_week(train_df_tr)
+    train_df_part_day = get_part_day(train_df_tr)
+    #train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train')
+
+    test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')
+    test_df_tr = add_text_clean_col_to_df(test_df_tr)
+    test_df_counts = get_features_of_interest_counts(test_df_tr)
+    test_df_languages = get_language_df(test_df_tr)
+    test_df_day_week = get_day_week(test_df_tr)
+    test_df_part_day = get_part_day(test_df_tr)
+    test_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='test')
 
 
-train_df_counts = get_features_of_interest_counts(train_df_tr)
-train_df_languages = get_language_df(train_df_tr)
-train_df_day_week = get_day_week(train_df_tr)
-train_df_part_day = get_part_day(train_df_tr)
-# train_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='train')
 
-test_df_tr = pd.read_csv(TEST_FPATH, delimiter=';')
-test_df_tr = add_text_clean_col_to_df(test_df_tr)
-test_df_counts = get_features_of_interest_counts(test_df_tr)
-test_df_languages = get_language_df(test_df_tr)
-test_df_day_week = get_day_week(test_df_tr)
-test_df_part_day = get_part_day(test_df_tr)
-test_df_sentiment = get_sentiment_features_df(ROOT_PATH, str='test')
 
-## LET's DO A NICE MODEL
 
-y = train_df_tr['username'].values
-y1, y2 = np.unique(y, return_inverse=True)
 
-# Counts features and scale
-train_features_count = count_features_and_scale(train_df_tr, train_df_counts)
-test_features_count = count_features_and_scale(test_df_tr, test_df_counts)
 
-# Parameter selection (TFIDF)
-tfidf_vectorizer = funcs.StemmedTfidfVectorizer(
-    sublinear_tf=True,  # scaling
-    # strip_accents='unicode',
-    max_df=0.25,  # 0.5,
-    min_df=3,
-    norm='l2',
-    # token_pattern='#?\w\w+',#r'[^0-9]\w{1,}',#r'#?[^0-9]\w\w+',
-    stop_words=funcs.stop_words(),
-    ngram_range=(1, 1),
-    # max_features=4000
-)
 
-X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
-X_tfidf = np.append(X_tfidf, train_df_languages, 1)
-X_tfidf = np.append(X_tfidf, train_features_count, 1)
-X_tfidf = np.append(X_tfidf, train_df_sentiment, 1)
-X_tfidf = np.append(X_tfidf, train_df_day_week, 1)
-X_tfidf = np.append(X_tfidf, train_df_part_day, 1)
 
-X_tfidf_test = tfidf_vectorizer.transform(test_df_tr['text_clean']).toarray()
-X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
-X_tfidf_test = np.append(X_tfidf_test, test_features_count, 1)
-X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
-X_tfidf_test = np.append(X_tfidf_test, test_df_day_week, 1)
-X_tfidf_test = np.append(X_tfidf_test, test_df_part_day, 1)
-fill_nan_in_matrix(X_tfidf_test, value=0.5)
 
-le = LabelEncoder()
-y_encode = le.fit_transform(train_df_tr['username'])
-X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(X_tfidf,
-                                                                                 y_encode,
-                                                                                 train_df_tr.index,
-                                                                                 test_size=0.25)
 
-clf = SVC(C=1, kernel='linear')
-assert len(X_train) == len(y_train)
-clf.fit(X_train, y_train)
-prediction = clf.predict(X_test)
-print("Prediction: {}".format(np.mean([prediction == y_test])))
 
-# Create the results file
-assert len(X_tfidf) == len(y)
-clf.fit(X_tfidf, y)
-predictions = clf.predict(X_tfidf_test)
-len(X_tfidf_test)
-funcs.save_submission(predictions, "sample_submission_oliver_svc_politicians")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ## LET's DO A NICE MODEL
+
+    y = train_df_tr['username'].values
+    y1, y2 = np.unique(y, return_inverse=True)
+
+    # Counts features and scale
+    train_features_count = count_features_and_scale(train_df_tr, train_df_counts)
+    test_features_count = count_features_and_scale(test_df_tr, test_df_counts)
+
+    # Parameter selection (TFIDF)
+    tfidf_vectorizer = funcs.StemmedTfidfVectorizer(
+        sublinear_tf=True,  # scaling
+        # strip_accents='unicode',
+        max_df=0.25,  # 0.5,
+        min_df=3,
+        norm='l2',
+        # token_pattern='#?\w\w+',#r'[^0-9]\w{1,}',#r'#?[^0-9]\w\w+',
+        stop_words=funcs.stop_words(),
+        ngram_range=(1, 1),
+        # max_features=4000
+    )
+
+    X_tfidf = tfidf_vectorizer.fit_transform(train_df_tr['text_clean']).toarray()
+    X_tfidf = np.append(X_tfidf, train_df_languages, 1)
+    X_tfidf = np.append(X_tfidf, train_features_count, 1)
+    X_tfidf = np.append(X_tfidf, train_df_sentiment, 1)
+    X_tfidf = np.append(X_tfidf, train_df_day_week, 1)
+    X_tfidf = np.append(X_tfidf, train_df_part_day, 1)
+
+    X_tfidf_test = tfidf_vectorizer.transform(test_df_tr['text_clean']).toarray()
+    X_tfidf_test = np.append(X_tfidf_test, test_df_languages, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_features_count, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_df_sentiment, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_df_day_week, 1)
+    X_tfidf_test = np.append(X_tfidf_test, test_df_part_day, 1)
+    fill_nan_in_matrix(X_tfidf_test, value=0.5)
+
+    le = LabelEncoder()
+    y_encode = le.fit_transform(train_df_tr['username'])
+    X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(X_tfidf,
+                                                                                     y_encode,
+                                                                                     train_df_tr.index,
+                                                                                     test_size=0.25)
+
+    clf = SVC(C=1, kernel='linear')
+    assert len(X_train) == len(y_train)
+    clf.fit(X_train, y_train)
+    prediction = clf.predict(X_test)
+    print("Prediction: {}".format(np.mean([prediction == y_test])))
+
+    #Create the results file
+    assert len(X_tfidf) == len(y)
+    clf.fit(X_tfidf, y)
+    predictions = clf.predict(X_tfidf_test)
+    len(X_tfidf_test)
+    funcs.save_submission(predictions, "sample_submission_oliver_svc_politicians")
